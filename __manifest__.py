@@ -18,6 +18,7 @@
     "views/notes_kanban.xml",
     "views/enrolls_kanban.xml",
     "views/subjects_kanban.xml",
+    "views/dossier_graph.xml",
     "views/root_menu.xml",
     "security/ir.model.access.csv",
     ],

@@ -6,3 +6,4 @@ access_university_professor,access_university_professors,model_university_profes
 access_university_student,access_university_students,model_university_students,base.group_user,1,1,1,1
 access_university_subject,access_university_subjects,model_university_subjects,base.group_user,1,1,1,1
 access_university_university,access_university_university,model_university_university,base.group_user,1,1,1,1
+access_university_dossier,access_university_dossier,model_university_dossier,base.group_user,1,1,1,1

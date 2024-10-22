@@ -27,6 +27,10 @@
             <menuitem id="menu_students"
                       name="Students"
                       action="university_students_kanban_action" />
+                      
+            <menuitem id="menu_dossiers"
+                      name="Dossiers"
+                      action="university_dossier_graph_action" />
 
             <menuitem id="menu_notes"
                       name="Notes"
