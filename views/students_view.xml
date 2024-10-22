@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="university.students_view_form" model="ir.ui.view">
+            <field name="name">university.students.view.form</field>
+            <field name="model">university.students</field>
+            <field name="arch" type="xml">
+                <form string="Students">
+                    <sheet>
+                        
+                        <notebook>
+                            <page string="General Information">
+                                <group>
+                                    <label for="name" string="Student Name" />
+                                    <field name="name" />
+                                </group>
+                                <group>
+                                    <field name="image" widget="image" />
+                                </group>
+                                <group>
+                                    <field name="university_id" />
+                                    <field name="tutor" />
+                                </group>
+                            </page>
+                            <page string="Contact Information">
+                                    <field name="postal_code"
+                                           placeholder="Enter postal code" />
+                                    <field name="country"
+                                           placeholder="Select country" />
+                                    <field name="province"
+                                           placeholder="Enter province/state" />
+                                    <field name="city"
+                                           placeholder="Enter city" />
+                                    <field name="street"
+                                        placeholder="Enter street address" />
+                                </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

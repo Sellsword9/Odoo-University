@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <!-- View -->
+  <record
+      id="university_departments_kanban"
+      model="ir.ui.view">
+    <field name="name">Departments Kanban</field>
+    <field name="model">university.departments</field>
+    <field
+        name="arch"
+        type="xml">
+      <kanban>
+        <t t-name="card">
+          <div class="oe_kanban_global_click">
+            <div class="o_kanban_record">
+              <div class="o_kanban_details">
+                <h2>
+                  <field name="name" />
+                </h2>
+                <h3>Of: <field name="university_id" /></h3>
+                <h4> Directed by: <field name="head" /></h4>
+                <field name="professors" />
+              </div>
+            </div>
+          </div>
+        </t>
+      </kanban>
+    </field>
+
+  </record>
+  <!-- Action -->
+  <record
+      id="university_departments_kanban_action"
+      model="ir.actions.act_window">
+    <field name="name">Departments Kanban</field>
+    <field name="res_model">university.departments</field>
+    <field name="view_mode">kanban</field>
+    <field name="domain">[('university_id', '=?', context.get('search_id'))]</field>
+  </record>
+
+</odoo>

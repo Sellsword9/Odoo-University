@@ -1,0 +1,44 @@
+from typing_extensions import ReadOnly
+from odoo import models, fields, api
+
+class Professor(models.Model):
+    _name = "university.professors"
+    _description = "The professors of the universities."
+    
+    name = fields.Char()
+    university_id = fields.Many2one("university.university", required=True)
+    department_id = fields.Many2one("university.departments")
+    subjects = fields.Many2many("university.subjects")
+    enrolls = fields.One2many("university.enrolls", "professor_id")
+
+    enroll_count = fields.Char(string="Enroll Count", compute="_compute_enroll_count")
+    @api.depends('enrolls')
+    def _compute_enroll_count(self):
+        
+        for record in self:
+           if record.enrolls:
+               record.enroll_count = str(len(record.enrolls)) + " enrolls"
+           else:
+                record.enroll_count = "No enrolls yet"
+    
+    # Image field
+    image = fields.Image()
+    
+    
+                
+    # Department head calculation
+    boss = fields.Char(relate="department_id.head")
+    is_head = fields.Boolean(compute="_is_head", readOnly = False)
+    @api.depends('department_id')
+    def _is_head(self):
+        for record in self:
+            if record.boss == record:
+                record.is_head = True
+            else:
+                record.is_head = False
+    
+    @api.model
+    def create(self, vals):
+        res = super(Professor, self).create(vals)
+        res.is_head = res.boss == res
+        return res          
