@@ -12,7 +12,7 @@
           <div class="oe_kanban_global_click">
             <div class="o_kanban_record">
               <div class="o_kanban_details">
-                <h3><field name="student" /> has enrolled in <field name="subject_id" /></h3>
+                <h3><field name="student_id" /> has enrolled in <field name="subject_id" /></h3>
                 <h3> Professor: <field name="professor_id" /></h3>
               </div>
             </div>
@@ -30,7 +30,7 @@
     <field name="arch"
            type="xml">
       <search>
-        <field name="student"/>
+        <field name="student_id"/>
         <field name="subject_id"/>
         <field name="professor_id"/>
       </search>
@@ -57,7 +57,7 @@
     <field name="arch"
            type="xml">
       <search>
-        <field name="student"/>
+        <field name="student_id"/>
         <field name="subject_id"/>
         <field name="professor_id"/>
         <field name="university_postal_code"/>

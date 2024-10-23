@@ -10,7 +10,7 @@
                         <notebook>
                             <page string="General Information">
                                 <group>
-                                    <label for="name" string="Student Name" />
+                                    <label for="name" string="Professor Name" />
                                     <field name="name" />
                                 </group>
                                 <group>

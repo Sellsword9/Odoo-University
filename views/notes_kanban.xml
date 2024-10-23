@@ -15,7 +15,7 @@
                 <!--  Notes are kinda trivial to show in a kanban -->
                 <div>
                   <h3>
-                    <field name="student" />
+                    <field name="student_id" />
                     <br />
                     <field name="note" />
                     <br />

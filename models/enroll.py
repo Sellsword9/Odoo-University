@@ -4,7 +4,7 @@ class enroll(models.Model):
     _name = "university.enrolls"
     _description = "Enrolls for every student for every subject in universities."
     
-    student = fields.Many2one("university.students")
+    student_id = fields.Many2one("university.students")
     university_id = fields.Many2one("university.university")
     professor_id = fields.Many2one("university.professors")
     subject_id = fields.Many2one("university.subjects")
@@ -43,10 +43,10 @@ class enroll(models.Model):
             else:
                 record.name = f"UNKNOWN/{year}/{number}"
         
-    @api.onchange("student")
+    @api.onchange("student_id")
     def _onchange_student(self):
-        if self.student.university_id and self.student.university_id != self.university_id:
-            self.university_id = self.student.university_id
+        if self.student_id.university_id and self.student_id.university_id != self.university_id:
+            self.university_id = self.student_id.university_id
     @api.onchange("subject_id")
     def _onchange_subject(self):
         if self.university_id is None:

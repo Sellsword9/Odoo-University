@@ -19,8 +19,8 @@ class Student(models.Model):
     
     # Academic Information
     tutor = fields.Many2one('university.professors', string='Tutor')
-    enrolls = fields.One2many('university.enrolls', 'student', string='enrolls')
-    notes = fields.One2many('university.notes', 'student', string='Notes')
+    enrolls = fields.One2many('university.enrolls', 'student_id', string='enrolls')
+    notes = fields.One2many('university.notes', 'student_id', string='Notes')
 
     # Computed fields
     enroll_count = fields.Char(string="Enroll Count", compute="_compute_enroll_count")
