@@ -36,6 +36,7 @@
     <field name="name">Notes Kanban</field>
     <field name="res_model">university.notes</field>
     <field name="view_mode">kanban</field>
+    <field name="domain">[('student_id', '=?', context.get('search_id'))]</field>
   </record>
 
 </odoo>

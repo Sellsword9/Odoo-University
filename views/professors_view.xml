@@ -7,6 +7,15 @@
             <field name="arch" type="xml">
                 <form string="Professors">
                     <sheet>
+                        <div class="oe_button_box" name="button_box">
+                        <button name="university.university_enrolls_kanban_action"
+                            type="action"
+                            class="stat_button"
+                            icon="fa-envelope"
+                            context="{'search_id': id}">
+                            <field name="enroll_count" style="text-align: center;" />
+                        </button>
+                        </div>
                         <notebook>
                             <page string="General Information">
                                 <group>
