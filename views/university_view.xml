@@ -44,7 +44,7 @@
                     >
                     <field name="departments_count" style="text-align: center;" />
                 </button>
-          </div>
+              </div>
             <notebook>
               <page string="General Information">
                     <field name="name" />
