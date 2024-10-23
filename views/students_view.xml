@@ -8,47 +8,34 @@
                 <form string="Students">
                     <sheet>
                         <div class="oe_button_box" name="button_box">
-                        <button name="university.university_enrolls_kanban_action"
-                            type="action"
-                            class="stat_button"
-                            icon="fa-envelope"
-                            context="{'search_id': id}">
-                            <field name="enroll_count" style="text-align: center;" />
-                        </button>
-                        <button name="university.university_notes_kanban_action"
-                                type="action"
-                                class="stat_button"
-                                icon="fa-file-text"
-                                context="{'search_id': id}" >
-                        <field name="note_count_str" style="text-align: center;" />
-                        </button>
+                            <button name="university.university_enrolls_kanban_action" type="action" class="stat_button" icon="fa-envelope" context="{&apos;search_id&apos;: id}">
+                                <field name="enroll_count" style="text-align: center;"/>
+                            </button>
+                            <button name="university.university_notes_kanban_action" type="action" class="stat_button" icon="fa-file-text" context="{&apos;search_id&apos;: id}">
+                                <field name="note_count_str" style="text-align: center;"/>
+                            </button>
                         </div>
                         <notebook>
                             <page string="General Information">
                                 <group>
-                                    <label for="name" string="Student Name" />
-                                    <field name="name" />
+                                    <label for="name" string="Student Name"/>
+                                    <field name="name"/>
                                 </group>
                                 <group>
-                                    <field name="image" widget="image" />
+                                    <field name="image" widget="image"/>
                                 </group>
                                 <group>
-                                    <field name="university_id" />
-                                    <field name="tutor" />
+                                    <field name="university_id"/>
+                                    <field name="tutor"/>
                                 </group>
                             </page>
                             <page string="Contact Information">
-                                    <field name="postal_code"
-                                           placeholder="Enter postal code" />
-                                    <field name="country"
-                                           placeholder="Select country" />
-                                    <field name="province"
-                                           placeholder="Enter province/state" />
-                                    <field name="city"
-                                           placeholder="Enter city" />
-                                    <field name="street"
-                                        placeholder="Enter street address" />
-                                </page>
+                                <field name="postal_code" placeholder="Enter postal code"/>
+                                <field name="country" placeholder="Select country"/>
+                                <field name="province" placeholder="Enter province/state"/>
+                                <field name="city" placeholder="Enter city"/>
+                                <field name="street" placeholder="Enter street address"/>
+                            </page>
                         </notebook>
                     </sheet>
                 </form>

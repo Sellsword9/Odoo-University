@@ -1,41 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<odoo>
-    <!-- View -->
-    <record
-            id="university_university_kanban"
-            model="ir.ui.view">
+<odoo><!-- View -->
+    <record id="university_university_kanban" model="ir.ui.view">
         <field name="name">University Kanban</field>
         <field name="model">university.university</field>
-        <field
-                name="arch"
-                type="xml">
+        <field name="arch" type="xml">
             <kanban>
-                <field name="flag" />
-                <field name="image" />
+                <field name="flag"/>
+                <field name="image"/>
                 <t t-name="card">
                     <div class="oe_kanban_global_click">
                         <div class="o_kanban_record">
                             <div class="o_kanban_details">
                                 <div style="padding: 5px; max-width: 100%; height: 12rem; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-                                    <field name="image" 
-                                        widget="image" 
-                                        options='{"zoom": 1}' 
-                                        style="height: 12rem; width: auto; border: 1px solid white;"
-                                        />
+                                    <field name="image" widget="image" options="{&quot;zoom&quot;: 1}" style="height: 12rem; width: auto; border: 1px solid white;"/>
                                 </div>
                                 <div>
-                                        <field name="name" /><br></br>
-                                    (Local time: <field name="local_time" /> )
-                                <img
-                                        t-att-src="record.flag.raw_value"
-                                        style="max-width: 100%; max-height: 3rem; border: 1px solid black; float:right" />
+                                    <field name="name"/>
+                                    <br></br>
+                                    (Local time: <field name="local_time"/> )
+                                <img t-att-src="record.flag.raw_value" style="max-width: 100%; max-height: 3rem; border: 1px solid black; float:right"/>
                                 </div>
-                                <div> Dirección: <field name="street" />, <field name="city" />
+                                <div> Dirección: <field name="street"/>, <field name="city"/>
                                 </div>
-                                <div> Postal code: <field name="postal_code" />
+                                <div> Postal code: <field name="postal_code"/>
                                 </div>
                                 <div>
-                                    <field name="country" />
+                                    <field name="country"/>
                                 </div>
                             </div>
                         </div>
@@ -43,15 +33,10 @@
                 </t>
             </kanban>
         </field>
-
-    </record>
-    <!-- Action -->
-    <record
-            id="university_university_kanban_action"
-            model="ir.actions.act_window">
+    </record><!-- Action -->
+    <record id="university_university_kanban_action" model="ir.actions.act_window">
         <field name="name">University Kanban</field>
         <field name="res_model">university.university</field>
         <field name="view_mode">kanban</field>
     </record>
-
 </odoo>

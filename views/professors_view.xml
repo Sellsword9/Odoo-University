@@ -8,31 +8,25 @@
                 <form string="Professors">
                     <sheet>
                         <div class="oe_button_box" name="button_box">
-                        <button name="university.university_enrolls_kanban_action"
-                            type="action"
-                            class="stat_button"
-                            icon="fa-envelope"
-                            context="{'search_id': id}">
-                            <field name="enroll_count" style="text-align: center;" />
-                        </button>
+                            <button name="university.university_enrolls_kanban_action" type="action" class="stat_button" icon="fa-envelope" context="{&apos;search_id&apos;: id}">
+                                <field name="enroll_count" style="text-align: center;"/>
+                            </button>
                         </div>
                         <notebook>
                             <page string="General Information">
                                 <group>
-                                    <label for="name" string="Professor Name" />
-                                    <field name="name" />
+                                    <label for="name" string="Professor Name"/>
+                                    <field name="name"/>
                                 </group>
                                 <group>
-                                    <field name="image" widget="image" />
+                                    <field name="image" widget="image"/>
                                 </group>
                                 <group>
                                     <h3>Data</h3>
-                                    <field name="university_id"
-                                             placeholder="University" />
-                                    <field name="department_id" />
-                                    <field name="is_head" string="Head of department: " />
-                                    <field name="subjects"
-                                                placeholder="Subjects" />
+                                    <field name="university_id" placeholder="University"/>
+                                    <field name="department_id"/>
+                                    <field name="is_head" string="Head of department: "/>
+                                    <field name="subjects" placeholder="Subjects"/>
                                 </group>
                             </page>
                         </notebook>

@@ -8,23 +8,19 @@
                 <form string="Subjects">
                     <sheet>
                         <div class="oe_button_box" name="button_box">
-                            <button name="university.university_enrolls_kanban_action"
-                                type="action"
-                                class="stat_button"
-                                icon="fa-envelope"
-                                context="{'search_id': id}">
-                                <field name="enroll_count" style="text-align: center;" />
+                            <button name="university.university_enrolls_kanban_action" type="action" class="stat_button" icon="fa-envelope" context="{&apos;search_id&apos;: id}">
+                                <field name="enroll_count" style="text-align: center;"/>
                             </button>
                         </div>
                         <notebook>
-                          <page>
-                            <label for="name">Name of the subject: </label>
-                            <field name="name" ></field>
-                            <label for="enrolls">Enrollments in the subject</label>
-                            <field name="enrolls"></field>
-                            <field name="professors"></field>
-                            <field name="university_id"></field>
-                          </page>
+                            <page>
+                                <label for="name">Name of the subject: </label>
+                                <field name="name"></field>
+                                <label for="enrolls">Enrollments in the subject</label>
+                                <field name="enrolls"></field>
+                                <field name="professors"></field>
+                                <field name="university_id"></field>
+                            </page>
                         </notebook>
                     </sheet>
                 </form>
