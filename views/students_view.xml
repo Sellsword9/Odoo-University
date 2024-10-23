@@ -18,7 +18,7 @@
                         <button name="university.university_notes_kanban_action"
                                 type="action"
                                 class="stat_button"
-                                icon="fa-envelope"
+                                icon="fa-file-text"
                                 context="{'search_id': id}" >
                         <field name="note_count_str" style="text-align: center;" />
                         </button>

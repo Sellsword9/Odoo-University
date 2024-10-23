@@ -23,7 +23,7 @@
             <button name="university.university_professors_kanban_action"
                     type="action"
                     class="stat_button"
-                    icon="fa-address-card"
+                    icon="fa-id-badge"
                     context="{'search_id': id}"
                     >
                     <field name="professors_count" style="text-align: center;" />
