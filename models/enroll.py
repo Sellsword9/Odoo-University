@@ -11,7 +11,7 @@ class enroll(models.Model):
     notes = fields.One2many("university.notes", "enroll_id")
     
     university_name = fields.Char(related="university_id.name", readonly=True)
-    university_postal_code = fields.Integer(related="university_id.postal_code", readonly=True)
+    university_postal_code = fields.Char(related="university_id.postal_code", readonly=True)
     
     enrolls_this_subject = fields.Integer(compute="_compute_enrolls_in_subject", store=False, readonly=True)
     name = fields.Char(compute="_compute_name", store=True, readonly=True)

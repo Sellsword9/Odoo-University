@@ -10,7 +10,7 @@ class University(models.Model):
     
     
     street = fields.Char()
-    postal_code = fields.Integer()
+    postal_code = fields.Char()
     city = fields.Char()  
     # Image field
     image = fields.Image()
