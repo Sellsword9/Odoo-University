@@ -12,7 +12,6 @@ class Dossier(models.Model):
     department = fields.Many2one('university.departments', readonly = True)
     professor = fields.Many2one('university.professors', readonly = True)
     subject = fields.Many2one('university.subjects', readonly = True)
-    notes = fields.Many2many('university.notes', readonly = True)
     average = fields.Float(readonly = True)
 
     def init(self):
@@ -27,19 +26,20 @@ class Dossier(models.Model):
                     e.professor_id AS professor,
                     p.department_id AS department,
                     e.subject_id AS subject,
-                    ARRAY_AGG(n.id) AS notes,
-                    AVG(n.note) AS average
+                    AVG(s.average) AS average
+                    
                 FROM
                     university_enrolls e
                     JOIN university_professors p ON e.professor_id = p.id
-                    LEFT JOIN university_notes n ON e.student_id = n.student_id
+                    LEFT JOIN university_students s ON e.student_id = s.id
                 GROUP BY
                     e.id,
                     e.university_id,
                     e.student_id,
                     e.professor_id,
                     p.department_id,
-                    e.subject_id
+                    e.subject_id,
+                    s.average
             )""")
     
     
