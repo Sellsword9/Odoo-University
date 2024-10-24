@@ -5,7 +5,7 @@
     <field name="model">university.dossier</field>
     <field name="arch" type="xml">
       <graph>
-        <field name="student" type="row"/>
+        <field name="enroll" type="row"/>
         <field name="university" type="col"/>
         <field name="subject" type="col"/>
         <field name="professor" type="col"/>

@@ -13,7 +13,8 @@ class Department(models.Model):
     def _onchange_professors(self):
         for professor in self.professors:
             professor.department_id = self.id
-        self.university_id = self.professors[0].university_id
+        if self.university_id is None and self.professors[0]: 
+            self.university_id = self.professors[0].university_id
             
     @api.onchange('head')
     def _onchange_head(self):

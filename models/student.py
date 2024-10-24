@@ -29,7 +29,6 @@ class Student(models.Model):
     average = fields.Float(string="Average", compute="_compute_average", store=True)
     @api.depends('enrolls')
     def _compute_enroll_count(self):
-        
         for record in self:
            if record.enrolls:
                record.enroll_count = str(len(record.enrolls)) + " enrolls"
@@ -44,17 +43,18 @@ class Student(models.Model):
                 record.note_count = 0
     @api.depends('note_count')
     def _compute_note_count_str(self):
-        if self.note_count:
-            self.note_count_str = str(self.note_count) + " notes"
-        else:
-            self.note_count_str = "No notes yet"
-    @api.depends('notes', 'notes.note')
-    def _compute_average(self):
-        for student in self:
-            if student.notes:
-                sum = 0
-                for note in student.notes:
-                    sum += note.note
-                student.average = sum / len(student.notes)
+        for record in self:
+            if record.note_count:
+                record.note_count_str = str(record.note_count) + " notes"
             else:
-                student.average = 0
+                record.note_count_str = "No notes yet"
+    @api.depends('enrolls.average', 'enrolls')
+    def _compute_average(self):
+        for record in self:
+            if record.enrolls:
+                sum = 0
+                for enroll in record.enrolls:
+                    sum += enroll.average
+                record.average = sum / len(record.enrolls)
+            else:
+                record.average = 0

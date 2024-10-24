@@ -16,6 +16,7 @@ class Dossier(models.Model):
 
     def init(self):
         tools.drop_view_if_exists(self.env.cr, self._table)
+        #FIXME: This query is not averaging the notes correctly
         self.env.cr.execute("""
             CREATE OR REPLACE VIEW university_dossier AS (
                 SELECT
@@ -26,20 +27,19 @@ class Dossier(models.Model):
                     e.professor_id AS professor,
                     p.department_id AS department,
                     e.subject_id AS subject,
-                    AVG(s.average) AS average
+                    AVG(n.note) AS average
                     
                 FROM
-                    university_enrolls e
+                    university_notes n
+                    JOIN university_enrolls e ON n.enroll_id = e.id AND n.student_id = e.student_id 
                     JOIN university_professors p ON e.professor_id = p.id
-                    LEFT JOIN university_students s ON e.student_id = s.id
                 GROUP BY
                     e.id,
                     e.university_id,
                     e.student_id,
                     e.professor_id,
                     p.department_id,
-                    e.subject_id,
-                    s.average
+                    e.subject_id
             )""")
     
     

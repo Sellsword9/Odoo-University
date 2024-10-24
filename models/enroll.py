@@ -16,6 +16,18 @@ class enroll(models.Model):
     enrolls_this_subject = fields.Integer(compute="_compute_enrolls_in_subject", store=False, readonly=True)
     name = fields.Char(compute="_compute_name", store=True, readonly=True)
     
+    average = fields.Float(string="Average", compute="_compute_average", store=True)
+    
+    @api.depends("notes", "notes.note")
+    def _compute_average(self):
+        for record in self:
+            if record.notes:
+                sum = 0
+                for note in record.notes:
+                    sum += note.note
+                record.average = sum / len(record.notes)
+            else:
+                record.average = 0
     
     @api.depends("subject_id")
     def _compute_enrolls_in_subject(self):

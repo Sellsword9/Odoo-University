@@ -22,5 +22,5 @@ class Subject(models.Model):
     
     @api.onchange('professors')
     def _onchange_professors(self):
-        if self.university_id is None:
+        if self.university_id is None and self.professors[0]:
             self.university_id = self.professors[0].university_id
