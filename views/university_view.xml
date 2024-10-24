@@ -8,16 +8,16 @@
         <form string="University">
           <sheet>
             <div class="oe_button_box" name="button_box">
-              <button name="university.university_enrolls_kanban_action" type="action" class="stat_button" icon="fa-envelope" context="{&apos;search_id&apos;: id}">
+              <button name="university.university_enrolls_kanban_action" type="action" class="stat_button" icon="fa-envelope" context="{'search_id_university': id}">
                 <field name="enroll_count" style="text-align: center;"/>
               </button>
-              <button name="university.university_professors_kanban_action" type="action" class="stat_button" icon="fa-id-badge" context="{&apos;search_id&apos;: id}">
+              <button name="university.university_professors_kanban_action" type="action" class="stat_button" icon="fa-id-badge" context="{'search_id': id}">
                 <field name="professors_count" style="text-align: center;"/>
               </button>
-              <button name="university.university_students_kanban_action" type="action" class="stat_button" icon="fa-users" context="{&apos;search_id&apos;: id}">
+              <button name="university.university_students_kanban_action" type="action" class="stat_button" icon="fa-users" context="{'search_id': id}">
                 <field name="students_count" style="text-align: center;"/>
               </button>
-              <button name="university.university_departments_kanban_action" type="action" class="stat_button" icon="fa-building" context="{&apos;search_id&apos;: id}">
+              <button name="university.university_departments_kanban_action" type="action" class="stat_button" icon="fa-building" context="{'search_id': id}">
                 <field name="departments_count" style="text-align: center;"/>
               </button>
             </div>

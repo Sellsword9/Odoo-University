@@ -8,10 +8,10 @@
                 <form string="Students">
                     <sheet>
                         <div class="oe_button_box" name="button_box">
-                            <button name="university.university_enrolls_kanban_action" type="action" class="stat_button" icon="fa-envelope" context="{&apos;search_id&apos;: id}">
+                            <button name="university.university_enrolls_kanban_action" type="action" class="stat_button" icon="fa-envelope" context="{'search_id_student': id}">
                                 <field name="enroll_count" style="text-align: center;"/>
                             </button>
-                            <button name="university.university_notes_kanban_action" type="action" class="stat_button" icon="fa-file-text" context="{&apos;search_id&apos;: id}">
+                            <button name="university.university_notes_kanban_action" type="action" class="stat_button" icon="fa-file-text" context="{'search_id_student': id}">
                                 <field name="note_count_str" style="text-align: center;"/>
                             </button>
                         </div>

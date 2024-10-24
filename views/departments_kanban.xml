@@ -28,6 +28,8 @@
     <field name="name">Departments Kanban</field>
     <field name="res_model">university.departments</field>
     <field name="view_mode">kanban</field>
-    <field name="domain">[(&apos;university_id&apos;, &apos;=?&apos;, context.get(&apos;search_id&apos;))]</field>
+    <field name="domain">[
+      ('university_id', '=?', context.get('search_id'))
+      ]</field>
   </record>
 </odoo>
