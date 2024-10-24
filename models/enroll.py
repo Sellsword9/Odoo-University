@@ -20,10 +20,13 @@ class enroll(models.Model):
     @api.depends("subject_id")
     def _compute_enrolls_in_subject(self):
         for record in self:
-            if record.subject_id.enrolls and len(record.subject_id.enrolls) > 1: # Prevents off by one errors
-                record.enrolls_this_subject = record.subject_id.enrolls[-1].enrolls_this_subject
+            if record.subject_id and record.subject_id.enrolls:
+                if record.id in record.subject_id.enrolls.ids:
+                    record.enrolls_this_subject = len(record.subject_id.enrolls)
+                else:
+                    record.enrolls_this_subject = len(record.subject_id.enrolls) + 1
             else:
-                record.enrolls_this_subject = len(record.subject_id.enrolls)
+                record.enrolls_this_subject = 0
     
     @api.depends("subject_id")
     def _compute_name(self):
@@ -32,7 +35,7 @@ class enroll(models.Model):
             if record.create_date is not None and record.create_date is not False:
                 year = str(record.create_date.year)
             
-            number = 1 # Prevents zero value
+            number = 0
             if record.enrolls_this_subject and record.enrolls_this_subject > 1:
                 number += record.enrolls_this_subject
             

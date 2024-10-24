@@ -14,6 +14,7 @@
                 </h3>
                 <h3> Professor: <field name="professor_id"/>
                 </h3>
+                <field name="name"/>
               </div>
             </div>
           </div>
