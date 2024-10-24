@@ -10,6 +10,7 @@
     "views/enrolls_kanban.xml",
     "views/notes_kanban.xml",
     "views/departments_kanban.xml",
+    "views/departments_view.xml",
     "views/professors_kanban.xml",
     "views/professors_view.xml",
     "views/subjects_kanban.xml",

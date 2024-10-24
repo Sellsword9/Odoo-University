@@ -13,8 +13,7 @@ class Department(models.Model):
     def _onchange_professors(self):
         for professor in self.professors:
             professor.department_id = self.id
-        if self.university_id is None:
-            self.university_id = self.professors[0].university_id
+        self.university_id = self.professors[0].university_id
             
     @api.onchange('head')
     def _onchange_head(self):
@@ -26,3 +25,10 @@ class Department(models.Model):
         for record in self:
             if record.head and record.head.department_id != record:
                 raise ValueError("The head of the department should also be a professor of the department.")
+    # Restricting different university professors
+    @api.constrains('professors')
+    def _check_professors(self):
+        for record in self:
+            for professor in record.professors:
+                if professor.university_id != record.university_id:
+                    raise ValueError("A professor of a department should belong to the same university.")

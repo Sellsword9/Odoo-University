@@ -12,16 +12,13 @@
                                 <field name="enroll_count" style="text-align: center;"/>
                             </button>
                         </div>
-                        <notebook>
-                            <page>
-                                <label for="name">Name of the subject: </label>
-                                <field name="name"></field>
-                                <label for="enrolls">Enrollments in the subject</label>
-                                <field name="enrolls"></field>
-                                <field name="professors"></field>
-                                <field name="university_id"></field>
-                            </page>
-                        </notebook>
+                        <group>
+                            <field name="name" string="Name of the subject: "></field>
+                            <field name="university_id"></field>
+                            <label for="enrolls">Enrollments in the subject</label>
+                            <field name="enrolls"></field>
+                            <field name="professors" widget="many2many_tags"></field>
+                        </group>
                     </sheet>
                 </form>
             </field>
