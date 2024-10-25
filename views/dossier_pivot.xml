@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="university_dossier_pivot" model="ir.ui.view">
+        <field name="name">Dossier Pivot</field>
+        <field name="model">university.dossier</field>
+        <field name="arch" type="xml">
+        <pivot>
+            <field name="student" type="row"/>
+            <field name="university" type="col"/>
+            <field name="average" type="measure"/>
+        </pivot>
+        </field>
+    </record>
+    <record id="university_dossier_pivot_action" model="ir.actions.act_window">
+        <field name="name">Dossier Pivot</field>
+        <field name="res_model">university.dossier</field>
+        <field name="view_mode">pivot</field>
+    </record>
+</odoo>
