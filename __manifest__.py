@@ -19,6 +19,8 @@
     "views/dossier_pivot.xml",
     "views/students_kanban.xml",
     "views/students_view.xml",
+    "reports/student_report.xml",
+    "reports/ir.actions_report.xml",
     "views/university_action.xml",
     "views/university_kanban.xml",
     "views/university_view.xml",

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <template id="student_report">
+       <t t-call="web.html_container">
+           <t t-foreach="docs" t-as="o">
+               <t t-call="web.external_layout">
+                   <div class="page">
+                       <div class="oe_structure"/>
+                       <h1>
+                         Name :  <span t-field="o.name"/>
+                       </h1>
+                       <!-- Subject/Professors average summary-->
+                        <h2>Summary</h2>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Professor</th>
+                                    <th>Subject</th>
+                                    <th>Average</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.enrolls" t-as="e">
+                                    <tr>
+                                        <td>
+                                            <span t-field="e.professor_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="e.subject_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="e.average"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                       <!-- Full note records-->
+                   </div>
+               </t>
+           </t>
+       </t>
+   </template>
+</odoo>
