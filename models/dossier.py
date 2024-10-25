@@ -12,14 +12,14 @@ class Dossier(models.Model):
     department = fields.Many2one('university.departments', readonly = True)
     professor = fields.Many2one('university.professors', readonly = True)
     subject = fields.Many2one('university.subjects', readonly = True)
-    average = fields.Float(readonly = True)
+    average = fields.Float(readonly = True, group_operator = 'avg')
 
     def init(self):
         tools.drop_view_if_exists(self.env.cr, self._table)
         #FIXME: This query is not averaging the notes correctly
         self.env.cr.execute("""
             CREATE OR REPLACE VIEW university_dossier AS (
-                SELECT
+                SELECT DISTINCT
                     ROW_NUMBER() OVER() AS id,
                     e.id AS enroll,
                     e.university_id AS university,
@@ -27,8 +27,7 @@ class Dossier(models.Model):
                     e.professor_id AS professor,
                     p.department_id AS department,
                     e.subject_id AS subject,
-                    AVG(n.note) AS average
-                    
+                    AVG(n.note) AS average  
                 FROM
                     university_notes n
                     JOIN university_enrolls e ON n.enroll_id = e.id AND n.student_id = e.student_id 
@@ -41,42 +40,3 @@ class Dossier(models.Model):
                     p.department_id,
                     e.subject_id
             )""")
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-            
-    """def init(self):
-        tools.drop_view_if_exists(self.env.cr, self._table)
-        self.env.cr.execute("""
-    """  CREATE OR REPLACE VIEW university_dossier AS (
-                SELECT
-                    ROW_NUMBER() OVER() AS id,
-                    e.id AS enroll,
-                    e.university_id AS university,
-                    e.student_id AS student,
-                    e.professor_id AS professor,
-                    p.department_id AS department,
-                    e.subject_id AS subject,
-                    ARRAY_AGG(n.id) AS notes,
-                    AVG(n.note) AS average
-                FROM
-                    university_enrolls e
-                    JOIN university_professors p ON e.professor_id = p.id
-                    LEFT JOIN university_notes n ON e.student_id = n.student_id
-                GROUP BY
-                    e.id,
-                    e.university_id,
-                    e.student_id,
-                    e.professor_id,
-                    p.department_id,
-                    e.subject_id
-            )
-        """ """)"""
