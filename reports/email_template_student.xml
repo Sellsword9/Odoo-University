@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>  
+    <record id="email_template_student" model="mail.template">
+    <field name="name">Correo Alumno</field>
+    <field name="email_from">${(user.email) or ''}</field>
+    <field name="email_to">${object.email or ''}</field>
+    <field name="subject">Reporte del Alumno</field>
+    <field name="model_id" ref="university.model_university_students"/>
+    <field name="body_html"><![CDATA[
+        <p>Hola,</p>
+        <p>Adjunto te envío el reporte del alumno.</p>
+    ]]></field>
+    </record>
+</odoo>

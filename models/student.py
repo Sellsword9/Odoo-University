@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+import base64
 
 class Student(models.Model):
     _name = 'university.students'
@@ -58,3 +59,32 @@ class Student(models.Model):
                 record.average = sum / len(record.enrolls)
             else:
                 record.average = 0
+    
+    
+    def action_send_pdf_email(self):
+            # Generar el PDF del reporte
+            report_name = 'university.student_report'
+            pdf_content, _ = self.env.ref(report_name).sudo()._render_qweb_pdf(self.id)
+
+            # Convertir el PDF a base64
+            pdf_base64 = base64.b64encode(pdf_content)
+
+            # Crear el archivo adjunto
+            attachment = self.env['ir.attachment'].create({
+                'name': 'Student_Report.pdf',
+                'type': 'binary',
+                'datas': pdf_base64,
+                'res_model': 'university.student_report',
+                'res_id': self.id,
+                'mimetype': 'application/pdf'
+            })
+
+            # Configurar el correo electrónico
+            template_id = self.env.ref('university.email_template_student').id
+            template = self.env['mail.template'].browse(template_id)
+            if not template:
+                raise UserError(_("La plantilla de correo no existe."))
+
+            # Adjuntar el PDF y enviar el correo
+            template.attachment_ids = [(4, attachment.id)]
+            template.send_mail(self.id, force_send=True)

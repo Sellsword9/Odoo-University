@@ -21,6 +21,7 @@
     "views/students_view.xml",
     "reports/student_report.xml",
     "reports/ir.actions_report.xml",
+    "reports/email_template_student.xml",
     "views/university_action.xml",
     "views/university_kanban.xml",
     "views/university_view.xml",
@@ -29,6 +30,7 @@
     ],
   "depends": [
     "base",
+    "mail",
     "base_setup"
     ],
     "installable": True,

@@ -16,7 +16,6 @@ class Dossier(models.Model):
 
     def init(self):
         tools.drop_view_if_exists(self.env.cr, self._table)
-        #FIXME: This query is not averaging the notes correctly
         self.env.cr.execute("""
             CREATE OR REPLACE VIEW university_dossier AS (
                 SELECT DISTINCT
