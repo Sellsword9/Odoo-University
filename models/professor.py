@@ -26,8 +26,8 @@ class Professor(models.Model):
     
                 
     # Department head calculation
-    boss = fields.Char(relate="department_id.head")
-    is_head = fields.Boolean(compute="_is_head", readOnly = False)
+    boss = fields.One2many("university.departments", "head")
+    is_head = fields.Boolean(compute="_is_head", readonly = False)
     @api.depends('department_id')
     def _is_head(self):
         for record in self:

@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+from odoo.exceptions import UserError
 import base64
 
 class Student(models.Model):
@@ -60,31 +61,38 @@ class Student(models.Model):
             else:
                 record.average = 0
     
-    
+    #TODO
     def action_send_pdf_email(self):
-            # Generar el PDF del reporte
-            report_name = 'university.student_report'
-            pdf_content, _ = self.env.ref(report_name).sudo()._render_qweb_pdf(self.id)
+        # Generate the PDF report
+        report_name = 'university.action_report_student_template'
+        report = self.env.ref(report_name)
+        if not report or report.model != 'ir.actions.report':
+            raise UserError("The report does not exist.")
 
-            # Convertir el PDF a base64
-            pdf_base64 = base64.b64encode(pdf_content)
+        
+        print(report)
+         
+        pdf_content, _ = report.sudo()._render_qweb_pdf(self.id)
 
-            # Crear el archivo adjunto
-            attachment = self.env['ir.attachment'].create({
-                'name': 'Student_Report.pdf',
-                'type': 'binary',
-                'datas': pdf_base64,
-                'res_model': 'university.student_report',
-                'res_id': self.id,
-                'mimetype': 'application/pdf'
-            })
+        # Convert the PDF to base64
+        pdf_base64 = base64.b64encode(pdf_content)
 
-            # Configurar el correo electrónico
-            template_id = self.env.ref('university.email_template_student').id
-            template = self.env['mail.template'].browse(template_id)
-            if not template:
-                raise UserError(_("La plantilla de correo no existe."))
+        # Create the attachment
+        attachment = self.env['ir.attachment'].create({
+            'name': 'Student_Report.pdf',
+            'type': 'binary',
+            'datas': pdf_base64,
+            'res_model': 'university.model_university_students',
+            'res_id': self.id,
+            'mimetype': 'application/pdf'
+        })
 
-            # Adjuntar el PDF y enviar el correo
-            template.attachment_ids = [(4, attachment.id)]
-            template.send_mail(self.id, force_send=True)
+        # Get the email template
+        template_id = self.env.ref('university.email_template_student').id
+        template = self.env['mail.template'].browse(template_id)
+        if not template:
+            raise UserError(_("La plantilla de correo no existe."))
+
+        # Attach the PDF and send the email
+        template.attachment_ids = [(4, attachment.id)]
+        template.send_mail(self.id, force_send=True)
