@@ -1,0 +1,37 @@
+<odoo>
+    <template id="university_list" name="University List">
+        <t t-call="website.layout">
+            <div class="container">
+                <h1>University List</h1>
+                <div class="row">
+                    <t t-foreach="universities" t-as="university">
+                        <div class="col-lg-4 col-md-6">
+                            <a t-att-href="'/professors/%d' % university.id">
+                                <img t-if="university.image" t-att-src="'data:image/png;base64,%s' % university.image" 
+                                     style="width: 200px; height: 200px;"/>
+                                <h3><t t-esc="university.name"/></h3>
+                            </a>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="professor_list" name="Professor List">
+        <t t-call="website.layout">
+            <div class="container">
+                <h2>Professors at <t t-esc="university.name"/></h2>
+                <div class="row">
+                    <t t-foreach="professors" t-as="professor">
+                        <div class="col-lg-4 col-md-6">
+                            <img t-if="professor.image" t-att-src="'data:image/png;base64,%s' % professor.image" 
+                                 style="width: 200px; height: 200px;"/>
+                            <h3><t t-esc="professor.name"/></h3>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
