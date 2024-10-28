@@ -35,7 +35,42 @@
                                 </t>
                             </tbody>
                         </table>
-                       <!-- Full note records-->
+                        <h2> Full Report</h2>
+                                                <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Professor</th>
+                                    <th>Subject</th>
+                                    <th>Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.enrolls" t-as="e">
+                                    <tr>
+                                        <td>
+                                            <span t-field="e.professor_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="e.subject_id.name"/>
+                                        </td>
+                                        <td>
+                                            <t t-if="e.notes">
+                                                <ul>
+                                                    <t t-foreach="e.notes" t-as="n">
+                                                        <li>
+                                                            <span t-field="n.note"/>
+                                                        </li>
+                                                    </t>
+                                                </ul>
+                                            </t>
+                                            <t t-else="">
+                                                No notes available
+                                            </t>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
                    </div>
                </t>
            </t>

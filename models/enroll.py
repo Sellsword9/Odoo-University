@@ -54,9 +54,12 @@ class enroll(models.Model):
             # Compute the subject abbreviation
             if record.subject_id.name:
                 subject_abbr = get_subject_abbreviation(record.subject_id.name)
-                record.name = f"{subject_abbr}/{year}/{number}"
+                record.name = subject_abbr + "/" + year + "/" + '{0:04}'.format(number)
             else:
-                record.name = f"UNKNOWN/{year}/{number}"
+                record.name = f"UNKNOWN"
+        
+        
+        
         
     @api.onchange("student_id")
     def _onchange_student(self):
