@@ -12,7 +12,7 @@
                         <div class="o_kanban_record">
                             <div class="o_kanban_details">
                                 <div style="padding: 5px; max-width: 100%; height: 12rem; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-                                    <field name="image" widget="image" options="{&quot;zoom&quot;: 1}" style="height: 12rem; width: auto; border: 1px solid white;"/>
+                                    <field name="image" widget="image" options="{'zoom': 1}" style="height: 12rem; width: auto; border: 1px solid white;"/>
                                 </div>
                                 <div>
                                     <field name="name"/>

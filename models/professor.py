@@ -1,4 +1,3 @@
-from typing_extensions import ReadOnly
 from odoo import models, fields, api
 
 class Professor(models.Model):
