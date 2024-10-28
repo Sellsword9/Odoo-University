@@ -9,25 +9,33 @@
                 <field name="image"/>
                 <t t-name="card">
                     <div class="oe_kanban_global_click">
-                        <div class="o_kanban_record">
+                        <div class="o_kanban_record" style="height: 100%;">
                             <div class="o_kanban_details">
-                                <div style="padding: 5px; max-width: 100%; height: 12rem; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-                                    <field name="image" widget="image" options="{'zoom': 1}" style="height: 12rem; width: auto; border: 1px solid white;"/>
+                               <div style="min-height: 100%; width: 100%;">
+                                <div style="display: flex; justify-content: space-between; height: 4rem;">
+                                    <div>
+                                        <field name="name"/>
+                                        <br></br>
+                                        (Local time: <field name="local_time"/> )
+                                    </div>
+                                    <div style="width: 40%; height: 100%">
+                                        <field name="image" widget="image" options="{'zoom': 1}"/>
+                                    </div>
                                 </div>
-                                <div>
-                                    <field name="name"/>
+                                <br></br>
+                                <div style="width: 100%; height: 100%; padding-top: 10px;">
+                                    Dirección: <field name="street"/> 
                                     <br></br>
-                                    (Local time: <field name="local_time"/> )
-                                <img t-att-src="record.flag.raw_value" style="max-width: 100%; max-height: 3rem; border: 1px solid black; float:right"/>
-                                </div>
-                                <div> Dirección: <field name="street"/>, <field name="city"/>
+                                    <field name="city"/>
                                 </div>
                                 <div> Postal code: <field name="postal_code"/>
                                 </div>
                                 <div>
                                     <field name="country"/>
+                                    <img t-att-src="record.flag.raw_value" style="max-width: 5rem; max-height: 3rem; border: 1px solid black; float:right;"/>
                                 </div>
                             </div>
+                            </div> 
                         </div>
                     </div>
                 </t>
