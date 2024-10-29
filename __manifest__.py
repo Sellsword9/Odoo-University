@@ -7,6 +7,7 @@
   "application": True,
   
   "data": [
+    "views/university_templates.xml",
     "views/enrolls_kanban.xml",
     "views/notes_kanban.xml",
     "views/departments_kanban.xml",
@@ -22,7 +23,6 @@
     "views/students_kanban.xml",
     "views/students_view.xml",
     "reports/ir.report_student.xml",
-    "views/university_templates.xml",
     "views/university_action.xml",
     "views/university_kanban.xml",
     "views/university_view.xml",

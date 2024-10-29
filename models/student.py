@@ -56,7 +56,6 @@ class Student(models.Model):
             else:
                 record.average = 0
     
-    #TODO
     def action_send_pdf_email(self):
         # Generate the PDF report
         self.ensure_one()

@@ -19,7 +19,7 @@
                                         (Local time: <field name="local_time"/> )
                                     </div>
                                     <div style="width: 40%; height: 100%">
-                                        <field name="image" widget="image" options="{'zoom': 1}"/>
+                                        <field name="image" widget="image" options="{'zoom': True}"/>
                                     </div>
                                 </div>
                                 <br></br>
