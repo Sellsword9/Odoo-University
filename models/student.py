@@ -58,38 +58,9 @@ class Student(models.Model):
     
     #TODO
     def action_send_pdf_email(self):
-        """ # Generate the PDF report
-        report_name = 'university.action_report_student_template'
-        report = self.env.ref(report_name)
-        if not report or report.model != 'ir.actions.report':
-            raise UserError("The report does not exist.")
-
-        
-        print(report)
-         
-        pdf_content, _ = report.sudo()._render_qweb_pdf(self.id)
-
-        # Convert the PDF to base64
-        pdf_base64 = base64.b64encode(pdf_content)
-
-        # Create the attachment
-        attachment = self.env['ir.attachment'].create({
-            'name': 'Student_Report.pdf',
-            'type': 'binary',
-            'datas': pdf_base64,
-            'res_model': 'university.model_university_students',
-            'res_id': self.id,
-            'mimetype': 'application/pdf'
-        })
-
-        # Get the email template
+        # Generate the PDF report
+        self.ensure_one()
         template_id = self.env.ref('university.email_template_student').id
-        template = self.env['mail.template'].browse(template_id)
-        if not template:
-            raise UserError(_("La plantilla de correo no existe."))
-
-        # Attach the PDF and send the email
-        template.attachment_ids = [(4, attachment.id)]
-        template.send_mail(self.id, force_send=True) """
+        self.env['mail.template'].browse(template_id).send_mail(self.id, force_send=True)
         
         

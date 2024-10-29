@@ -1,0 +1,36 @@
+<odoo>
+    <data>
+        <record id="university.email_template_student" model="mail.template">
+            <field name="name">Email Template Student</field>
+            <field name="model_id" ref="university.model_university_students"/>
+            <field name="subject">Student Information</field>
+            <field name="email_from">${object.tutor.email}</field>
+            <field name="email_to">${object.email}</field>
+            <field name="body_html"><![CDATA[
+                <p>Dear ${object.name},</p>
+                <p>Here is your student information:</p>
+                <p>Name: ${object.name}</p>
+                
+            ]]></field>
+            <!-- <field name="attachment_ids" eval="[(6, 0, ref('university.report_student'))]"/> -->
+        </record>
+    </data>
+</odoo>
+
+<!-- 
+                
+
+
+                <p>Average: ${object.average}</p>
+                <p>University: ${object.university_id.name}</p>
+                <p>Tutor: ${object.tutor.name}</p>
+                <p>Postal Code: ${object.postal_code}</p>
+                <p>Country: ${object.country_id.name}</p>
+                <p>Province: ${object.province}</p>
+                <p>City: ${object.city}</p>
+                <p>Street: ${object.street}</p>
+                
+                
+                
+                
+                -->

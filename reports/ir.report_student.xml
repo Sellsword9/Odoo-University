@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <report id="university.report_student"
+            model="university.students"
+            string="Student Report"
+            report_type="qweb-pdf"
+            name="university.report_student"
+            file="university.report_student.pdf" /> <!--            
+            
+            
+            attachment_use="True"
+            attachment="True" /> -->
+</odoo>
