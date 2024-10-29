@@ -1,14 +1,13 @@
 <odoo>
+    <!-- TODO: Add images and fix rows -->
     <template id="university_list" name="University List">
         <t t-call="website.layout">
-            <div class="container">
-                <h1>University List</h1>
-                <div class="row">
+            <div class="container" style="display: flex; flex-direction: column; align-items: center;">
+                <h1 style="margin: 1rem; color: #2b9fc0; font-style: italics">Nanobytes' Universities</h1>
+                <div class="row" style="background-color: #f2f2f2; padding: 0.8rem; border-radius: 0.5rem;">
                     <t t-foreach="universities" t-as="university">
-                        <div class="col-lg-4 col-md-6">
+                        <div style="border: 1px solid #ccc; border-radius: 0.5rem; margin: 0.3rem; text-align: center">
                             <a t-att-href="'/professors/%d' % university.id">
-                                <img t-if="university.image" t-att-src="'data:image/png;base64,%s' % university.image" 
-                                     style="width: 200px; height: 200px;"/>
                                 <h3><t t-esc="university.name"/></h3>
                             </a>
                         </div>
