@@ -58,7 +58,7 @@ class Student(models.Model):
     
     #TODO
     def action_send_pdf_email(self):
-        # Generate the PDF report
+        """ # Generate the PDF report
         report_name = 'university.action_report_student_template'
         report = self.env.ref(report_name)
         if not report or report.model != 'ir.actions.report':
@@ -90,4 +90,6 @@ class Student(models.Model):
 
         # Attach the PDF and send the email
         template.attachment_ids = [(4, attachment.id)]
-        template.send_mail(self.id, force_send=True)
+        template.send_mail(self.id, force_send=True) """
+        
+        

@@ -19,7 +19,7 @@
     "views/dossier_pivot.xml",
     "views/students_kanban.xml",
     "views/students_view.xml",
-    "reports/student_report.xml",
+    "reports/student_report_template.xml",
     "reports/ir.actions_report.xml",
     "reports/email_template_student.xml",
     "views/university_templates.xml",
