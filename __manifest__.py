@@ -21,7 +21,6 @@
     "views/students_view.xml",
     "reports/student_report_template.xml",
     "reports/ir.actions_report.xml",
-    "reports/email_template_student.xml",
     "views/university_templates.xml",
     "views/university_action.xml",
     "views/university_kanban.xml",
