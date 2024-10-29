@@ -12,7 +12,7 @@ class Dossier(models.Model):
     department = fields.Many2one('university.departments', readonly = True)
     professor = fields.Many2one('university.professors', readonly = True)
     subject = fields.Many2one('university.subjects', readonly = True)
-    average = fields.Float(readonly = True, group_operator = 'avg')
+    average = fields.Float(readonly = True, aggregator = 'avg')
 
     def init(self):
         tools.drop_view_if_exists(self.env.cr, self._table)

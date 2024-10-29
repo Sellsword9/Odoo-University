@@ -5,19 +5,14 @@ from datetime import datetime
 class University(models.Model):
     _name = "university.university"
     _description = "The universities of the system."
-
+    _inherit = ['university.has.directions']
+    
     name = fields.Char()
     
     
-    street = fields.Char()
-    postal_code = fields.Char()
-    city = fields.Char()  
+   
     # Image field
     image = fields.Image()
-    
-    # Relationship fields
-    country = fields.Many2one("res.country")
-    province = fields.Many2one("res.country.state")
     
     # Internal relationships fields
     enrolls = fields.One2many("university.enrolls", "university_id")
@@ -62,10 +57,6 @@ class University(models.Model):
            else:
                 record.students_count = "No students yet"
 
-    @api.onchange("province")
-    def _onchange_province(self):
-        if self.province:
-            self.country = self.province.country_id
 
     # ---------------------------------------------------------- #
     #                       Odds and ends

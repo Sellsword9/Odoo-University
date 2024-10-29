@@ -5,19 +5,14 @@ import base64
 class Student(models.Model):
     _name = 'university.students'
     _description = 'The students of the universities.'
-
+    _inherit = ['university.has.directions']
     name = fields.Char(string='Name', required=True)
     university_id = fields.Many2one('university.university', string='University')
     
     # Image field
     image = fields.Image()
     
-    # Directions
-    street = fields.Char(string='Street')
-    city = fields.Char(string='City')
-    postal_code = fields.Char(string='Postal Code')
-    country = fields.Many2one('res.country', string='Country')
-    province = fields.Many2one('res.country.state', string='State')
+    
     
     # Academic Information
     tutor = fields.Many2one('university.professors', string='Tutor')

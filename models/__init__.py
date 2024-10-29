@@ -1,4 +1,5 @@
 # models/__init__.py
+from . import hasDirections
 from . import university
 from . import student
 from . import professor

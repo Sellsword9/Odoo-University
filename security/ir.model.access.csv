@@ -1,4 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_university_has_directions,access_university_has_directions,model_university_has_directions,,1,1,1,1
 access_university_department,access_university_department,model_university_departments,base.group_user,1,1,1,1
 access_university_enroll,access_university_enrolls,model_university_enrolls,base.group_user,1,1,1,1
 access_university_note,access_university_notes,model_university_notes,base.group_user,1,1,1,1
