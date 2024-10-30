@@ -12,7 +12,6 @@ class Student(models.Model):
     
     # Image field
     image = fields.Image()
-    
     # Academic Information
     tutor_id = fields.Many2one('university.professors', string='Tutor')
     enrolls = fields.One2many('university.enrolls', 'student_id', string='Enrollments')
@@ -24,6 +23,10 @@ class Student(models.Model):
     note_count_str = fields.Char(string="Notes Count", compute="_compute_note_count_str")
     average = fields.Float(string="Average", compute="_compute_average", store=True)
 
+    def _compute_pdf(self):
+        for record in self:
+            record.pdf = record.create_pdf()
+    
     @api.depends('enrolls')
     def _compute_enroll_count(self):
         for record in self:
@@ -49,7 +52,6 @@ class Student(models.Model):
 
     def action_student_send(self):
         """ Opens a wizard to compose an email, with relevant mail template loaded by default """
-        self.ensure_one()
         template = self._find_mail_template()
         ctx = {
             'default_model': 'university.students',
@@ -60,12 +62,13 @@ class Student(models.Model):
             'email_to': self.env.user.email,
             'force_email': True,
         }
-        pdf_attach = self.env.ref('university.action_report_student')._render_qweb_pdf(self.id)[0]
+        
+        pdf_attach = self.env['ir.actions.report'].sudo()._render_qweb_pdf('university.action_report_student', [self.id])[0]
         pdf_attach = base64.b64encode(pdf_attach)
+        
         ctx['default_attachment_ids'] = [(0, 0, {
             'name': f"Student Report {self.name}.pdf",
             'datas': pdf_attach,
-            'datas_fname': f"Student Report {self.name}.pdf",
             'res_model': 'university.students',
             'res_id': self.id,
         })]
