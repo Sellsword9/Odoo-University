@@ -14,7 +14,7 @@
                             <button name="university.university_notes_kanban_action" type="action" class="stat_button" icon="fa-file-text" context="{'search_id_student': id}">
                                 <field name="note_count_str" style="text-align: center;"/>
                             </button>
-                            <button name="action_send_pdf_email" type="object" string="Enviar PDF por correo" class="btn-primary"/>
+                            <button name="action_student_send" type="object" string="Enviar PDF por correo" class="btn-primary"/>
                         </div>
                         <notebook>
                             <page string="General Information">
