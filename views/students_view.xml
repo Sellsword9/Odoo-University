@@ -28,7 +28,7 @@
                                 </group>
                                 <group>
                                     <field name="university_id"/>
-                                    <field name="tutor"/>
+                                    <field name="tutor_id"/>
                                 </group>
                             </page>
                             <page string="Contact Information">

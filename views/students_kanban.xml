@@ -25,7 +25,7 @@
                   <field name="country"/>
                 </div>
                 <div>
-                  <field name="tutor"/>
+                  <field name="tutor_id"/>
                 </div>
               </div>
             </div>
