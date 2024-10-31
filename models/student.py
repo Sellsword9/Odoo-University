@@ -51,7 +51,7 @@ class Student(models.Model):
                 record.average = 0
 
     def action_student_send(self):
-        """ Opens a wizard to compose an email, with relevant mail template loaded by default """
+
         template = self._find_mail_template()
         ctx = {
             'default_model': 'university.students',
