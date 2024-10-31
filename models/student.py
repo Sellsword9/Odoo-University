@@ -70,7 +70,7 @@ class Student(models.Model):
             'name': f"Student Report {self.name}.pdf",
             'datas': pdf_attach,
             'res_model': 'university.students',
-            'res_id': self.id,
+            'res_id': self.id
         })]
         
         #ctx['default_subject'] = f"Student Report for {self.name}"

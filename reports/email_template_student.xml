@@ -4,24 +4,25 @@
             <field name="name">Student Information Email</field>
             <field name="model_id" ref="university.model_university_students"/>
             <field name="subject">Student Information</field>
-            <field name="email_from">${object.tutor_id.email |safe}</field>
-            <field name="email_to">${object.email |safe}</field>
+            <field name="email_from">${student.tutor_id.email |safe}</field>
+            <field name="email_to">${student.email |safe}</field>
+            <field name="auto_delete" eval="False"/>
             <field name="body_html"><![CDATA[
-                <p>Dear ${object.name},</p>
+                <p>Dear ${student.name},</p>
                 <p>Here is your student information:</p>
                 <ul>
-                    <li><strong>Name:</strong> ${object.name}</li>
-                    <li><strong>Average:</strong> ${object.average | float}</li>
-                    <li><strong>University:</strong> ${object.university_id.name}</li>
-                    <li><strong>Tutor:</strong> ${object.tutor_id.name}</li>
-                    <li><strong>Postal Code:</strong> ${object.postal_code}</li>
-                    <li><strong>Country:</strong> ${object.country_id.name}</li>
-                    <li><strong>Province:</strong> ${object.province}</li>
-                    <li><strong>City:</strong> ${object.city}</li>
-                    <li><strong>Street:</strong> ${object.street}</li>
+                    <li><strong>Name:</strong> ${student.name}</li>
+                    <li><strong>Average:</strong> ${student.average | float}</li>
+                    <li><strong>University:</strong> ${student.university_id.name}</li>
+                    <li><strong>Tutor:</strong> ${student.tutor_id.name}</li>
+                    <li><strong>Postal Code:</strong> ${student.postal_code}</li>
+                    <li><strong>Country:</strong> ${student.country_id.name}</li>
+                    <li><strong>Province:</strong> ${student.province}</li>
+                    <li><strong>City:</strong> ${student.city}</li>
+                    <li><strong>Street:</strong> ${student.street}</li>
                 </ul>
                 <p>Best regards,</p>
-                <p>${object.tutor_id.name}</p>
+                <p>${student.tutor_id.name}</p>
             ]]></field>
         </record>
     </data>
