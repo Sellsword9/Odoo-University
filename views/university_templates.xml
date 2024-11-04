@@ -1,5 +1,4 @@
 <odoo>
-    <!-- TODO: Add images and fix rows -->
     <template id="university_list" name="University List">
         <t t-call="website.layout">
             <div class="container" style="display: flex; flex-direction: column; align-items: center;">

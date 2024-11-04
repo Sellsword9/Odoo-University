@@ -10,8 +10,18 @@
                         <group>
                             <field name="name"></field>
                             <field name="university_id"></field>
-                            <!-- TODO: Change professor widget to a kanban view -->
-                            <field name="professors" widget="many2many_tags"></field>
+                            <field name="professors" mode="kanban">
+                            <kanban>
+                                <templates>
+                                    <t t-name="card">
+                                        <field name="name"></field>
+                                        <aside>
+                                            <field name="image" widget="image"></field>
+                                        </aside>
+                                    </t>
+                                </templates>
+                            </kanban>
+                            </field>
                             <field name="head"></field>
                         </group>
                     </sheet>
