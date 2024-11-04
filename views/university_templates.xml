@@ -10,7 +10,7 @@
                             <a t-att-href="'/professors/%d' % university.id">
                                 <h3><t t-esc="university.name"/></h3>
                             </a>
-                            <img t-if="university.image" t-att-src="'data:image/png;base64,%s' % university.image" 
+                            <img t-if="university.image" t-att-src="'./web/image/university.university/%s/image' % university.id"
                                 style="width: 150px; height: 150px; margin: 0.5rem;"/>
                         </div>
                     </t>
