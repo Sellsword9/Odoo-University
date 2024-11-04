@@ -66,12 +66,14 @@ class Student(models.Model):
         pdf_attach = self.env['ir.actions.report'].sudo()._render_qweb_pdf('university.action_report_student', [self.id])[0]
         pdf_attach = base64.b64encode(pdf_attach)
         
-        ctx['default_attachment_ids'] = [(0, 0, {
+        attachment = self.env['ir.attachment'].create({
             'name': f"Student Report {self.name}.pdf",
             'datas': pdf_attach,
             'res_model': 'university.students',
             'res_id': self.id
-        })]
+        })
+        
+        ctx['default_attachment_ids'] = [attachment.id]
         
         #ctx['default_subject'] = f"Student Report for {self.name}"
 
