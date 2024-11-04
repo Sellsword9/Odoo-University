@@ -24,8 +24,8 @@
                 <h2>Professors at <t t-esc="university.name"/></h2>
                 <div class="row">
                     <t t-foreach="professors" t-as="professor">
-                        <div class="col-lg-4 col-md-6">
-                            <img t-if="professor.image" t-att-src="'data:image/png;base64,%s' % professor.image" 
+                        <div class="col-lg-4 col-md-6">         <!-- /web/image/university.professors/1/image -->
+                            <img t-if="professor.image" t-att-src="'../web/image/university.professors/%s/image' % professor.id"
                                  style="width: 200px; height: 200px;"/>
                             <h3><t t-esc="professor.name"/></h3>
                         </div>
@@ -34,4 +34,6 @@
             </div>
         </t>
     </template>
+
+
 </odoo>
