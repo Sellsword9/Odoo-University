@@ -19,3 +19,11 @@ class NotesController(http.Controller):
           'notes': notes,
           'subject': subject,
       })
+  @http.route(['/notes'], type='http', auth='public', website=True)
+  def list_all_notes(self, **kw):
+      # Retrieve all notes
+      notes = request.env['university.notes'].sudo().search([])
+      return request.render('university.notes_list', {
+          'notes': notes,
+          'full': True,
+      })

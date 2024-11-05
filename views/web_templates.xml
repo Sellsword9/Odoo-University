@@ -41,46 +41,84 @@
     <template id="notes_list" name="Notes List">
         <t t-call="website.layout">
             <div class="container">
-                <div class="row">
+                <div>
                     <t t-if="subject">
                         <h2>Notes for <t t-esc="subject.name"/>
                         </h2>
                     </t>
-                    <t t-else="">
+                    <t t-elif="student">
                         <h2>Notes for <t t-esc="student.name"/>
                         </h2>
                     </t>
-                    <div style="width: 100%; height: 0.5rem; background-color: #2b9fc0; margin: 0.5rem;"></div>
-                    <t t-foreach="notes" t-as="note">
-                        <div class="col-lg-4 col-md-6" style="background-color: #f2f2f2; padding: 1rem; margin: 1rem; border-radius: 0.5rem;">
-                            <h3>
-                                <t t-esc="note.enroll_id.name"/>
-                            </h3>
-                            <p style="color: #2b9fc0; font-style: italic">
-                                    (   
-                                <t t-if="subject">
-                                    <a t-att-href="'/students/%d' % note.student_id.id">
-                                        <t t-esc="note.student_id.name"/>
-                                    </a>
-                                </t>
-                                <t t-else="">
-                                    <a t-att-href="'/subjects/%d' % note.enroll_id.subject_id.id">
-                                        <t t-esc="note.enroll_id.subject_id.name"/>
-                                    </a>
-                                </t>
-                                    )
-                            </p>
-                            <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
-                                <p>
-                                    <t t-esc="note.note"/>
-/ 10
-                                </p>
-                                <p>
-                                    Professor: <t t-esc="note.enroll_id.professor_id.name"/>
-                                </p>
-                            </div>
-                        </div>
+                    <t t-else="">
+                        <h2>Notes
+                        </h2>
                     </t>
+
+                    <!-- Separator -->
+                    <div style="width: 100%; height: 0.5rem; background-color: #2b9fc0; margin: 0.5rem;"></div>
+                    <!-- Separator -->
+
+                    <t t-if="not full">
+                        <a href="/notes">
+                            <h4> See all notes </h4>
+                        </a>
+                    </t>
+                    <div style="display: flex; flex-wrap: wrap; justify-content: center; flex-direction: column;">
+                        <t t-foreach="notes" t-as="note">
+                            <div style="
+                            display:flex; 
+                            flex-direction: row; 
+                            justify-content: space-between;
+                            align-items: center; 
+                            background-color: #f2f2f2; 
+                            padding: 1rem; 
+                            margin: 1rem; 
+                            border-radius: 0.5rem;">
+                                <div style="width: 20%;">
+                                    <h3>
+                                        <t t-esc="note.enroll_id.name"/>
+                                    </h3>
+                                </div>
+                                <div style="width: 50%;">
+                                    <p style="color: #2b9fc0; font-style: italic">
+                                    (   
+                                        <t t-if="subject">
+                                            <a t-att-href="'/students/%d' % note.student_id.id">
+                                                <t t-esc="note.student_id.name"/>
+                                            </a>
+                                        </t>
+                                        <t t-elif="student">
+                                            <a t-att-href="'/subjects/%d' % note.enroll_id.subject_id.id">
+                                                <t t-esc="note.enroll_id.subject_id.name"/>
+                                            </a>
+                                        </t>
+                                        <t t-else="">
+                                            <a t-att-href="'/students/%d' % note.student_id.id">
+                                                <t t-esc="note.student_id.name"/>
+                                            </a>, 
+                                            <a t-att-href="'/subjects/%d' % note.enroll_id.subject_id.id">
+                                                <t t-esc="note.enroll_id.subject_id.name"/>
+                                            </a>
+
+                                        </t>
+                                    )
+                                    </p>
+                                </div>
+                                <div style="width: 20%;">
+                                    <p>
+                                    Professor: <t t-esc="note.enroll_id.professor_id.name"/>
+                                    </p>
+                                </div>
+                                <div style="width: 10%;">
+                                    <p>
+                                        <t t-esc="note.note"/>
+/ 10
+                                    </p>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
                 </div>
             </div>
         </t>

@@ -10,6 +10,9 @@ class Student(models.Model):
     name = fields.Char(string='Name', required=True)
     university_id = fields.Many2one('university.university', string='University')
     
+    # User field
+    user_id = fields.Many2one('res.users', string='User')
+    
     # Image field
     image = fields.Image()
     # Academic Information
@@ -23,6 +26,10 @@ class Student(models.Model):
     note_count_str = fields.Char(string="Notes Count", compute="_compute_note_count_str")
     average = fields.Float(string="Average", compute="_compute_average", store=True)
 
+    
+    
+    # Counts and average
+    
     def _compute_pdf(self):
         for record in self:
             record.pdf = record.create_pdf()
@@ -49,6 +56,9 @@ class Student(models.Model):
                 record.average = sum(enroll.average for enroll in record.enrolls) / len(record.enrolls)
             else:
                 record.average = 0
+
+
+    # Email and pdf generation
 
     def action_student_send(self):
 

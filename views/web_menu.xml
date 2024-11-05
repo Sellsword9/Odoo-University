@@ -1,0 +1,11 @@
+<odoo>
+    <data>
+        <record id="menu_web_notes" model="website.menu">
+            <field name="name">Notes Controller</field>
+            <field name="url">/subjects</field>
+            <field name="parent_id" ref="website.menu_my_account"/>
+            <field name="sequence" eval="50"/>
+            <!-- Ajusta el orden según prefieras -->
+        </record>
+    </data>
+</odoo>
