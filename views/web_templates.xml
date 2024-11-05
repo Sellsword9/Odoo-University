@@ -1,0 +1,88 @@
+<odoo>
+    <template id="university_list" name="University List">
+        <t t-call="website.layout">
+            <div class="container" style="display: flex; flex-direction: column; align-items: center;">
+                <h1 style="margin: 1rem; color: #2b9fc0; font-style: italics">Nanobytes' Universities</h1>
+                <div class="row" style="background-color: #f2f2f2; padding: 0.8rem; border-radius: 0.5rem;">
+                    <t t-foreach="universities" t-as="university">
+                        <div style="border: 1px solid #ccc; border-radius: 0.5rem; margin: 0.3rem; text-align: center">
+                            <a t-att-href="'/professors/%d' % university.id">
+                                <h3>
+                                    <t t-esc="university.name"/>
+                                </h3>
+                            </a>
+                            <img t-if="university.image" t-att-src="'./web/image/university.university/%s/image' % university.id" style="width: 150px; height: 150px; margin: 0.5rem;"/>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="professor_list" name="Professor List">
+        <t t-call="website.layout">
+            <div class="container">
+                <h2>Professors at <t t-esc="university.name"/>
+                </h2>
+                <div class="row">
+                    <t t-foreach="professors" t-as="professor">
+                        <div class="col-lg-4 col-md-6">                            <!-- /web/image/university.professors/1/image -->
+                            <img t-if="professor.image" t-att-src="'../web/image/university.professors/%s/image' % professor.id" style="width: 200px; height: 200px;"/>
+                            <h3>
+                                <t t-esc="professor.name"/>
+                            </h3>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="notes_list" name="Notes List">
+        <t t-call="website.layout">
+            <div class="container">
+                <div class="row">
+                    <t t-if="subject">
+                        <h2>Notes for <t t-esc="subject.name"/>
+                        </h2>
+                    </t>
+                    <t t-else="">
+                        <h2>Notes for <t t-esc="student.name"/>
+                        </h2>
+                    </t>
+                    <div style="width: 100%; height: 0.5rem; background-color: #2b9fc0; margin: 0.5rem;"></div>
+                    <t t-foreach="notes" t-as="note">
+                        <div class="col-lg-4 col-md-6" style="background-color: #f2f2f2; padding: 1rem; margin: 1rem; border-radius: 0.5rem;">
+                            <h3>
+                                <t t-esc="note.enroll_id.name"/>
+                            </h3>
+                            <p style="color: #2b9fc0; font-style: italic">
+                                    (   
+                                <t t-if="subject">
+                                    <a t-att-href="'/students/%d' % note.student_id.id">
+                                        <t t-esc="note.student_id.name"/>
+                                    </a>
+                                </t>
+                                <t t-else="">
+                                    <a t-att-href="'/subjects/%d' % note.enroll_id.subject_id.id">
+                                        <t t-esc="note.enroll_id.subject_id.name"/>
+                                    </a>
+                                </t>
+                                    )
+                            </p>
+                            <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+                                <p>
+                                    <t t-esc="note.note"/>
+/ 10
+                                </p>
+                                <p>
+                                    Professor: <t t-esc="note.enroll_id.professor_id.name"/>
+                                </p>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
