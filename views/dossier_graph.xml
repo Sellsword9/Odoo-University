@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo><!-- View -->
-  <record id="university_dossier_graph"
-          model="ir.ui.view">
-    <field name="name">Dossier Graph</field>
-    <field name="model">university.dossier</field>
-    <field name="arch"
-           type="xml">
-      <graph>
-        <field name="enroll"
-               type="row" />
-        <field name="university"
-               type="col" />
-        <field name="subject"
-               type="col" />
-        <field name="professor"
-               type="col" />
-        <field name="average"
-               type="measure" />
-      </graph>
-    </field>
-  </record><!-- Action -->
-  <record id="university_dossier_graph_action"
-          model="ir.actions.act_window">
-    <field name="name">Dossier Graph</field>
-    <field name="res_model">university.dossier</field>
-    <field name="view_mode">graph</field>
-  </record>
+       <record id="university_dossier_graph"
+               model="ir.ui.view">
+              <field name="name">Dossier Graph</field>
+              <field name="model">university.dossier</field>
+              <field name="arch"
+                     type="xml">
+                     <graph>
+                            <field name="enroll"
+                                   type="row" />
+                            <field name="university"
+                                   type="col" />
+                            <field name="subject"
+                                   type="col" />
+                            <field name="professor"
+                                   type="col" />
+                            <field name="average"
+                                   type="measure" />
+                     </graph>
+              </field>
+       </record><!--
+       Action -->
+       <record id="university_dossier_graph_action"
+               model="ir.actions.act_window">
+              <field name="name">Dossier Graph</field>
+              <field name="res_model">university.dossier</field>
+              <field name="view_mode">graph</field>
+       </record>
 </odoo>

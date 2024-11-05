@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-   <template id="student_report_template">
-       <t t-call="web.html_container">
-           <t t-foreach="docs" t-as="o">
-               <t t-call="web.external_layout">
-                   <div class="page">
-                       <div class="oe_structure"/>
-                       <h1>
-                         Name :  <span t-field="o.name"/>
-                       </h1>
-                       <!-- Subject/Professors average summary-->
+    <template id="student_report_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs"
+               t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="oe_structure" />
+                        <h1> Name : <span t-field="o.name" />
+                        </h1>
+                        <!-- Subject/Professors average summary-->
                         <h2>Summary</h2>
                         <table class="table">
                             <thead>
@@ -20,23 +20,24 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <t t-foreach="o.enrolls" t-as="e">
+                                <t t-foreach="o.enrolls"
+                                   t-as="e">
                                     <tr>
                                         <td>
-                                            <span t-field="e.professor_id.name"/>
+                                            <span t-field="e.professor_id.name" />
                                         </td>
                                         <td>
-                                            <span t-field="e.subject_id.name"/>
+                                            <span t-field="e.subject_id.name" />
                                         </td>
                                         <td>
-                                            <span t-field="e.average"/>
+                                            <span t-field="e.average" />
                                         </td>
                                     </tr>
                                 </t>
                             </tbody>
                         </table>
                         <h2> Full Report</h2>
-                                                <table class="table">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th>Professor</th>
@@ -45,20 +46,22 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <t t-foreach="o.enrolls" t-as="e">
+                                <t t-foreach="o.enrolls"
+                                   t-as="e">
                                     <tr>
                                         <td>
-                                            <span t-field="e.professor_id.name"/>
+                                            <span t-field="e.professor_id.name" />
                                         </td>
                                         <td>
-                                            <span t-field="e.subject_id.name"/>
+                                            <span t-field="e.subject_id.name" />
                                         </td>
                                         <td>
                                             <t t-if="e.notes">
                                                 <ul>
-                                                    <t t-foreach="e.notes" t-as="n">
+                                                    <t t-foreach="e.notes"
+                                                       t-as="n">
                                                         <li>
-                                                            <span t-field="n.note"/>
+                                                            <span t-field="n.note" />
                                                         </li>
                                                     </t>
                                                 </ul>
@@ -71,9 +74,9 @@
                                 </t>
                             </tbody>
                         </table>
-                   </div>
-               </t>
-           </t>
-       </t>
-   </template>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
 </odoo>
