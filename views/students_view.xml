@@ -1,43 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-        <record id="university.students_view_form" model="ir.ui.view">
+        <record id="university.students_view_form"
+                model="ir.ui.view">
             <field name="name">university.students.view.form</field>
             <field name="model">university.students</field>
-            <field name="arch" type="xml">
+            <field name="arch"
+                   type="xml">
                 <form string="Students">
                     <sheet>
-                        <div class="oe_button_box" name="button_box">
-                            <button name="university.university_enrolls_kanban_action" type="action" class="stat_button" icon="fa-envelope" context="{'search_id_student': id}">
-                                <field name="enroll_count" style="text-align: center;"/>
+                        <div class="oe_button_box"
+                             name="button_box">
+                            <button name="university.university_enrolls_kanban_action"
+                                    type="action"
+                                    class="stat_button"
+                                    icon="fa-envelope"
+                                    context="{'search_id_student': id}">
+                                <field name="enroll_count"
+                                       style="text-align: center;" />
                             </button>
-                            <button name="university.university_notes_kanban_action" type="action" class="stat_button" icon="fa-file-text" context="{'search_id_student': id}">
-                                <field name="note_count_str" style="text-align: center;"/>
+                            <button name="university.university_notes_kanban_action"
+                                    type="action"
+                                    class="stat_button"
+                                    icon="fa-file-text"
+                                    context="{'search_id_student': id}">
+                                <field name="note_count_str"
+                                       style="text-align: center;" />
                             </button>
-                            <button name="%(action_report_student)d" icon="fa-print" type="action" string="Imprimir PDF" class="btn-primary"/>
-                            <button name="action_student_send" icon="fa-send" type="object" string="Enviar PDF por correo" class="btn-primary"/>
+                            <button name="%(action_report_student)d"
+                                    icon="fa-print"
+                                    type="action"
+                                    string="Imprimir PDF"
+                                    class="btn-primary" />
+                            <button name="action_student_send"
+                                    icon="fa-send"
+                                    type="object"
+                                    string="Enviar PDF por correo"
+                                    class="btn-primary" />
                         </div>
                         <notebook>
                             <page string="General Information">
                                 <group>
-                                    <label for="name" string="Student Name"/>
-                                    <field name="name"/>
+                                    <label for="name"
+                                           string="Student Name" />
+                                    <field name="name" />
+                                    <field name="username" />
                                     <field name="average" />
                                 </group>
                                 <group>
-                                    <field name="image" widget="image"/>
+
                                 </group>
                                 <group>
-                                    <field name="university_id"/>
-                                    <field name="tutor_id"/>
+                                    <field name="university_id" />
+                                    <field name="tutor_id" />
                                 </group>
                             </page>
                             <page string="Contact Information">
-                                <field name="postal_code" placeholder="Enter postal code"/>
-                                <field name="country" placeholder="Select country"/>
-                                <field name="province" placeholder="Enter province/state"/>
-                                <field name="city" placeholder="Enter city"/>
-                                <field name="street" placeholder="Enter street address"/>
+                                <field name="postal_code"
+                                       placeholder="Enter postal code" />
+                                <field name="country"
+                                       placeholder="Select country" />
+                                <field name="province"
+                                       placeholder="Enter province/state" />
+                                <field name="city"
+                                       placeholder="Enter city" />
+                                <field name="street"
+                                       placeholder="Enter street address" />
                             </page>
                         </notebook>
                     </sheet>

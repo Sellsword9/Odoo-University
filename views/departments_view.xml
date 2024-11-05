@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-        <record id="university.departments_view_form" model="ir.ui.view">
+        <record id="university.departments_view_form"
+                model="ir.ui.view">
             <field name="name">university.departments.view.form</field>
             <field name="model">university.departments</field>
-            <field name="arch" type="xml">
+            <field name="arch"
+                   type="xml">
                 <form string="departments">
                     <sheet>
                         <group>
                             <field name="name"></field>
                             <field name="university_id"></field>
-                            <field name="professors" mode="kanban">
-                            <kanban>
-                                <templates>
-                                    <t t-name="card">
-                                        <field name="name"></field>
-                                        <aside>
-                                            <field name="image" widget="image"></field>
-                                        </aside>
-                                    </t>
-                                </templates>
-                            </kanban>
+                            <field name="professors"
+                                   mode="kanban">
+                                <kanban>
+                                    <templates>
+                                        <t t-name="card">
+                                            <field name="name"></field>
+                                            <aside>
+                                                <field name="image"
+                                                       widget="image"></field>
+                                            </aside>
+                                        </t>
+                                    </templates>
+                                </kanban>
                             </field>
                             <field name="head"></field>
                         </group>

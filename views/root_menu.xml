@@ -1,23 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <menuitem id="menu_university_root" name="Universities" sequence="1">
-        <menuitem id="menu_university" name="University Managment" sequence="1">
-            <menuitem id="menu_university_university" name="Manage Universities" action="university_university_action" sequence="2"/>
-            <menuitem id="menu_university_kanban" name="University Kanban" sequence="1" action="university_university_kanban_action"/>
+    <menuitem id="menu_university_root"
+              name="Universities"
+              sequence="1">
+        <menuitem id="menu_university"
+                  name="University Managment"
+                  sequence="1">
+            <menuitem id="menu_university_university"
+                      name="Manage Universities"
+                      action="university_university_action"
+                      sequence="2" />
+            <menuitem id="menu_university_kanban"
+                      name="University Kanban"
+                      sequence="1"
+                      action="university_university_kanban_action" />
         </menuitem>
-        <menuitem id="menu_students_root" name="Students, notes and enrollments" sequence="2">
-            <menuitem id="menu_students" name="Students" action="university_students_kanban_action"/>
-            <menuitem id="menu_notes" name="Notes" action="university_notes_kanban_action"/>
-            <menuitem id="menu_enrollments" name="Enrollments" action="university_enrolls_kanban_action"/>
+        <menuitem id="menu_students_root"
+                  name="Students, notes and enrollments"
+                  sequence="2">
+            <menuitem id="menu_students"
+                      name="Students"
+                      action="university_students_kanban_action" />
+            <menuitem id="menu_notes"
+                      name="Notes"
+                      action="university_notes_kanban_action" />
+            <menuitem id="menu_enrollments"
+                      name="Enrollments"
+                      action="university_enrolls_kanban_action" />
         </menuitem>
-        <menuitem id="menu_teaching_root" name="Professors, departments and subjects" sequence="3">
-            <menuitem id="menu_professors" name="Professors" sequence="1" action="university_professors_kanban_action"/>
-            <menuitem id="menu_departments" name="Departments" sequence="2" action="university_departments_kanban_action"/>
-            <menuitem id="menu_subjects" name="Subjects" sequence="3" action="university_subjects_kanban_action"/>
+        <menuitem id="menu_teaching_root"
+                  name="Professors, departments and subjects"
+                  sequence="3">
+            <menuitem id="menu_professors"
+                      name="Professors"
+                      sequence="1"
+                      action="university_professors_kanban_action" />
+            <menuitem id="menu_departments"
+                      name="Departments"
+                      sequence="2"
+                      action="university_departments_kanban_action" />
+            <menuitem id="menu_subjects"
+                      name="Subjects"
+                      sequence="3"
+                      action="university_subjects_kanban_action" />
         </menuitem>
-        <menuitem id="menu_reports" name="Reports" sequence="4">
-            <menuitem id="menu_dossier_graph" name="Dossier Graph" action="university_dossier_graph_action"/>
-            <menuitem id="menu_dossier_pivot" name="Dossier Pivot" action="university_dossier_pivot_action"/>
+        <menuitem id="menu_reports"
+                  name="Reports"
+                  sequence="4">
+            <menuitem id="menu_dossier_graph"
+                      name="Dossier Graph"
+                      action="university_dossier_graph_action" />
+            <menuitem id="menu_dossier_pivot"
+                      name="Dossier Pivot"
+                      action="university_dossier_pivot_action" />
         </menuitem>
     </menuitem>
 </odoo>

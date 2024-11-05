@@ -1,49 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
   <data>
-    <record id="university.university_view_form" model="ir.ui.view">
+    <record id="university.university_view_form"
+            model="ir.ui.view">
       <field name="name">university.university.view.form</field>
       <field name="model">university.university</field>
-      <field name="arch" type="xml">
+      <field name="arch"
+             type="xml">
         <form string="University">
           <sheet>
-            <div class="oe_button_box" name="button_box">
-              <button name="university.university_enrolls_kanban_action" widget="statinfo" type="action" class="stat_button" icon="fa-graduation-cap" context="{'search_id_university': id}">
-                <field name="enroll_count" style="text-align: center;"/>
+            <div class="oe_button_box"
+                 name="button_box">
+              <button name="university.university_enrolls_kanban_action"
+                      widget="statinfo"
+                      type="action"
+                      class="stat_button"
+                      icon="fa-graduation-cap"
+                      context="{'search_id_university': id}">
+                <field name="enroll_count"
+                       style="text-align: center;" />
               </button>
-              <button name="university.university_professors_kanban_action" type="action" class="stat_button" icon="fa-id-badge" context="{'search_id': id}">
-                <field name="professors_count" style="text-align: center;"/>
+              <button name="university.university_professors_kanban_action"
+                      type="action"
+                      class="stat_button"
+                      icon="fa-id-badge"
+                      context="{'search_id': id}">
+                <field name="professors_count"
+                       style="text-align: center;" />
               </button>
-              <button name="university.university_students_kanban_action" type="action" class="stat_button" icon="fa-users" context="{'search_id': id}">
-                <field name="students_count" style="text-align: center;"/>
+              <button name="university.university_students_kanban_action"
+                      type="action"
+                      class="stat_button"
+                      icon="fa-users"
+                      context="{'search_id': id}">
+                <field name="students_count"
+                       style="text-align: center;" />
               </button>
-              <button name="university.university_departments_kanban_action" type="action" class="stat_button" icon="fa-building" context="{'search_id': id}">
-                <field name="departments_count" style="text-align: center;"/>
+              <button name="university.university_departments_kanban_action"
+                      type="action"
+                      class="stat_button"
+                      icon="fa-building"
+                      context="{'search_id': id}">
+                <field name="departments_count"
+                       style="text-align: center;" />
               </button>
             </div>
             <notebook>
               <page string="General Information">
-                <field name="name"/><!-- Image field (Should appear top-right) -->
-                <field name="image" widget="image" style="width: 12rem; height: 8.5rem; float: right; margin-top: -1rem; margin-right: -1rem;"/>
+                <field name="image"
+                       widget="image"
+                       options="{'zoom': True}"
+                       class="oe_avatar oe_left" />
+                <group>
+                  <field name="name" />
+                  <field name="shortname" />
+                  <!-- Image field (Should appear top-right) -->
+                </group>
                 <group>
                   <h2>Address</h2>
-                  <field name="postal_code" placeholder="Enter postal code"/>
-                  <field name="country" placeholder="Select country"/>
-                  <field name="province" placeholder="Enter province/state"/>
-                  <field name="city" placeholder="Enter city"/>
-                  <field name="street" placeholder="Enter street address"/>
+                  <field name="postal_code"
+                         placeholder="Enter postal code" />
+                  <field name="country"
+                         placeholder="Select country" />
+                  <field name="province"
+                         placeholder="Enter province/state" />
+                  <field name="city"
+                         placeholder="Enter city" />
+                  <field name="street"
+                         placeholder="Enter street address" />
                 </group>
               </page>
               <page string="Staff Information">
                 <group>
-                  <field name="professors"/>
-                  <field name="departments"/>
+                  <field name="professors" />
+                  <field name="departments" />
                 </group>
               </page>
               <page string="Student Enrollment">
                 <group>
-                  <field name="students"/>
-                  <field name="enrolls"/>
+                  <field name="students" />
+                  <field name="enrolls" />
                 </group>
               </page>
             </notebook>

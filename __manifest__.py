@@ -8,6 +8,7 @@
   
   "data": [
     "views/web_templates.xml",
+
     "views/enrolls_kanban.xml",
     "views/notes_kanban.xml",
     "views/departments_kanban.xml",

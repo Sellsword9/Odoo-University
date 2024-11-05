@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo><!-- View -->
-  <record id="university_notes_kanban" model="ir.ui.view">
+  <record id="university_notes_kanban"
+          model="ir.ui.view">
     <field name="name">Notes Kanban</field>
     <field name="model">university.notes</field>
-    <field name="arch" type="xml">
+    <field name="arch"
+           type="xml">
       <kanban>
         <t t-name="card">
           <div class="oe_kanban_global_click">
@@ -11,11 +13,11 @@
               <div class="o_kanban_details"><!--  Notes are kinda trivial to show in a kanban -->
                 <div>
                   <h3>
-                    <field name="student_id"/>
-                    <br/>
-                    <field name="note"/>
-                    <br/>
-                    <field name="enroll_id"/>
+                    <field name="student_id" />
+                    <br />
+                    <field name="note" />
+                    <br />
+                    <field name="enroll_id" />
                   </h3>
                 </div>
               </div>
@@ -24,8 +26,10 @@
         </t>
       </kanban>
     </field>
-  </record><!-- Action -->
-  <record id="university_notes_kanban_action" model="ir.actions.act_window">
+  </record><!--
+  Action -->
+  <record id="university_notes_kanban_action"
+          model="ir.actions.act_window">
     <field name="name">Notes Kanban</field>
     <field name="res_model">university.notes</field>
     <field name="view_mode">kanban</field>

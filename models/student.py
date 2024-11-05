@@ -1,3 +1,4 @@
+from re import S
 from odoo import models, fields, api
 from odoo.exceptions import UserError
 import base64
@@ -11,7 +12,51 @@ class Student(models.Model):
     university_id = fields.Many2one('university.university', string='University')
     
     # User field
-    user_id = fields.Many2one('res.users', string='User')
+    user_id = fields.Many2one('res.users', string='User', Store=True)
+    username = fields.Char(string='Username', related='user_id.login', readonly = True, store = True)
+    # Create user on creation
+    
+    @api.model
+    def create(self, vals):
+        student = super(Student, self).create(vals)
+        if not student.user_id:
+            student.create_user()
+        return student
+    
+    @api.model
+    def write(self, vals):
+        res = super(Student, self).write(vals)
+        if 'name' in vals:
+            self.create_user()
+        return res
+    
+    def create_user(self):
+        self.ensure_one()
+        words = self.name.split()
+        if len(words) < 2:
+            words.append(words[0]) # Duplicating the name if no last name of any kind provided
+        university = self.university_id.shortname.lower().replace(" ", "")
+        
+        base_username = createUsername(words[0], words[1], university)
+        
+        c = 1
+        # O(n) is not important because 
+        # in a single university there will be a small number of students 
+        # with the exact same initial & last name,
+        # and for most cases it will be O(1)
+        while self.env['res.users'].search([('login', '=', base_username)]):
+            c += 1
+            u = createUsername(words[0], words[1]+str(c), university)
+            base_username = u
+            
+                
+        user = self.env['res.users'].create({
+            'name':  self.name,
+            'login': base_username,
+            'email': base_username,
+        })
+        self.user_id = user.id
+    
     
     # Image field
     image = fields.Image()
@@ -103,3 +148,7 @@ class Student(models.Model):
         """ Get the appropriate mail template for the enrollment based on its state. """
         self.ensure_one()
         return self.env.ref('university.email_template_student', raise_if_not_found=False)
+
+def createUsername(name, part2, university):
+    username = f"{name[0]}{part2}@nb.{university}.com"
+    return username

@@ -1,70 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo><!-- View -->
-  <record id="university_enrolls_kanban" model="ir.ui.view">
+  <record id="university_enrolls_kanban"
+          model="ir.ui.view">
     <field name="name">Enrolls Kanban</field>
     <field name="model">university.enrolls</field>
-    <field name="arch" type="xml">
+    <field name="arch"
+           type="xml">
       <kanban>
         <t t-name="card">
           <div class="oe_kanban_global_click">
             <div class="o_kanban_record">
               <div class="o_kanban_details">
                 <h3>
-                  <field name="student_id"/> has enrolled in <field name="subject_id"/>
+                  <field name="student_id" /> has enrolled in <field name="subject_id" />
                 </h3>
-                <h3> Professor: <field name="professor_id"/>
+                <h3> Professor: <field name="professor_id" />
                 </h3>
-                <field name="name"/>
+                <field name="name" />
               </div>
             </div>
           </div>
         </t>
       </kanban>
     </field>
-  </record><!-- Search-->
-  <record id="view_university_enroll_search" model="ir.ui.view">
+  </record><!--
+  Search-->
+  <record id="view_university_enroll_search"
+          model="ir.ui.view">
     <field name="name">university.enrolls.search</field>
     <field name="model">university.enrolls</field>
-    <field name="arch" type="xml">
+    <field name="arch"
+           type="xml">
       <search>
-        <field name="student_id"/>
-        <field name="subject_id"/>
-        <field name="professor_id"/>
+        <field name="student_id" />
+        <field name="subject_id" />
+        <field name="professor_id" />
       </search>
     </field>
   </record><!-- Action -->
-  <record id="university_enrolls_kanban_action" model="ir.actions.act_window">
+  <record id="university_enrolls_kanban_action"
+          model="ir.actions.act_window">
     <field name="name">Enrolls Kanban</field>
     <field name="res_model">university.enrolls</field>
     <field name="view_mode">kanban</field>
-    
+
     <!-- ## SEARCH DOMAIN ## -->
     <!-- The =? makes so if context is None, returns true. -->
-     <!-- So, only filtered out items are searched (term is not None) 
+    <!-- So, only filtered out items are searched (term is not None) 
       non-coincident (term does have the same id we are searching) records-->
-    
-      <field name="domain">[ 
+
+    <field name="domain">[
       ('university_id', '=?', context.get('search_id_university')),
-      ('student_id', '=?', context.get('search_id_student')),         
+      ('student_id', '=?', context.get('search_id_student')),
       ('professor_id', '=?', context.get('search_id_professor')),
       ('subject_id', '=?', context.get('search_id_subject'))
       ]</field>
 
     <!-- ############  -->
 
-    <field name="search_view_id" ref="view_university_enroll_search"/>
+    <field name="search_view_id"
+           ref="view_university_enroll_search" />
   </record>
-  
+
   <!-- Search -->
-  <record id="view_university_enroll_search" model="ir.ui.view">
+  <record id="view_university_enroll_search"
+          model="ir.ui.view">
     <field name="name">university.enrolls.search</field>
     <field name="model">university.enrolls</field>
-    <field name="arch" type="xml">
+    <field name="arch"
+           type="xml">
       <search>
-        <field name="student_id"/>
-        <field name="subject_id"/>
-        <field name="professor_id"/>
-        <field name="university_postal_code"/>
+        <field name="student_id" />
+        <field name="subject_id" />
+        <field name="professor_id" />
+        <field name="university_postal_code" />
       </search>
     </field>
   </record>

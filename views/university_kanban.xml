@@ -1,48 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<odoo><!-- View -->
-    <record id="university_university_kanban" model="ir.ui.view">
+<odoo>    <!-- View -->
+    <record id="university_university_kanban"
+            model="ir.ui.view">
         <field name="name">University Kanban</field>
         <field name="model">university.university</field>
-        <field name="arch" type="xml">
+        <field name="arch"
+               type="xml">
             <kanban>
-                <field name="flag"/>
-                <field name="image"/>
+                <field name="flag" />
+                <field name="image" />
                 <t t-name="card">
                     <div class="oe_kanban_global_click">
-                        <div class="o_kanban_record" style="height: 100%;">
+                        <div class="o_kanban_record"
+                             style="height: 100%;">
                             <div class="o_kanban_details">
-                               <div style="min-height: 100%; width: 100%;">
-                                <div style="display: flex; justify-content: space-between; height: 4rem;">
-                                    <div>
-                                        <field name="name"/>
-                                        <br></br>
-                                        (Local time: <field name="local_time"/> )
+                                <div style="min-height: 100%; width: 100%;">
+                                    <div style="display: flex; justify-content: space-between; height: 8rem;">
+                                        <div>
+                                            <field name="name" />
+                                            <p>(<field name="shortname" />)</p>
+                                            <br></br>
+                                            (Local time: <field name="local_time" /> ) </div>
+                                        <div style="width: 40%; height: 4rem">
+                                            <field name="image"
+                                                   widget="image"
+                                                   options="{'zoom': True}" />
+                                        </div>
                                     </div>
-                                    <div style="width: 40%; height: 100%">
-                                        <field name="image" widget="image" options="{'zoom': True}"/>
-                                    </div>
-                                </div>
-                                <br></br>
-                                <div style="width: 100%; height: 100%; padding-top: 10px;">
-                                    Dirección: <field name="street"/> 
                                     <br></br>
-                                    <field name="city"/>
-                                </div>
-                                <div> Postal code: <field name="postal_code"/>
-                                </div>
-                                <div>
-                                    <field name="country"/>
-                                    <img t-att-src="record.flag.raw_value" style="max-width: 5rem; max-height: 3rem; border: 1px solid black; float:right;"/>
+                                    <div style="width: 100%; height: 100%; padding-top: 10px;">
+                                        Dirección: <field name="street" />
+                                    <br></br>
+                                    <field name="city" />
+                                    </div>
+                                    <div> Postal code: <field name="postal_code" />
+                                    </div>
+                                    <div>
+                                        <field name="country" />
+                                        <img t-att-src="record.flag.raw_value"
+                                             style="max-width: 5rem; max-height: 3rem; border: 1px solid black; float:right;" />
+                                    </div>
                                 </div>
                             </div>
-                            </div> 
                         </div>
                     </div>
                 </t>
             </kanban>
         </field>
-    </record><!-- Action -->
-    <record id="university_university_kanban_action" model="ir.actions.act_window">
+    </record><!--
+    Action -->
+    <record id="university_university_kanban_action"
+            model="ir.actions.act_window">
         <field name="name">University Kanban</field>
         <field name="res_model">university.university</field>
         <field name="view_mode">kanban</field>
