@@ -1,0 +1,28 @@
+<odoo>
+    <!-- Inherit portal and add a button into my/account -->
+
+    <template id="portal_my_home_sale"
+              name="Notes menu"
+              customize_show="True"
+              inherit_id="portal.portal_my_home"
+              priority="20">
+        <xpath expr="//div[hasclass('o_portal_docs')]"
+               position="before">
+            <t t-set="portal_client_category_enable"
+               t-value="True" />
+        </xpath>
+
+        <div id="portal_client_category"
+             position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Notes</t>
+                <t t-set="url"
+                   t-value="'/notes'" />
+                <t t-set="text">Every note on every university</t>
+                <t t-set="placeholder_count"
+                   t-value="'order_count'" />
+            </t>
+        </div>
+    </template>
+
+</odoo>

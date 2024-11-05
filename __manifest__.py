@@ -8,7 +8,7 @@
   
   "data": [
     "views/web_templates.xml",
-
+    "views/web_menu.xml",
     "views/enrolls_kanban.xml",
     "views/notes_kanban.xml",
     "views/departments_kanban.xml",
@@ -35,6 +35,7 @@
     "mail",
     "base_setup",
     "website",
+    "portal",
     ],
     "installable": True,
     }
