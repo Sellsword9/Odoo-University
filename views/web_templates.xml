@@ -93,8 +93,9 @@
                                         <t t-esc="note.enroll_id.name" />
                                     </h3>
                                 </div>
-                                <div style="width: 50%;">
-                                    <p style="color: #2b9fc0; font-style: italic"> ( <t t-if="subject">
+                                <div style="width: 30%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                    <p style="color: #2b9fc0; font-style: italic">
+                                        <t t-if="subject">
                                             <a t-att-href="'/students/%d' % note.student_id.id">
                                                 <t t-esc="note.student_id.name" />
                                             </a>
@@ -105,18 +106,23 @@
                                             </a>
                                         </t>
                                         <t t-else="">
-                                            <a t-att-href="'/students/%d' % note.student_id.id">
-                                                <t t-esc="note.student_id.name" />
-                                            </a>
-                                        , 
-                                            <a t-att-href="'/subjects/%d' % note.enroll_id.subject_id.id">
-                                                <t t-esc="note.enroll_id.subject_id.name" />
-                                            </a>
-
+                                            <div>
+                                                <a t-att-href="'/students/%d' % note.student_id.id">
+                                                    <t t-esc="note.student_id.name" />
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <a t-att-href="'/subjects/%d' % note.enroll_id.subject_id.id">
+                                                    <t t-esc="note.enroll_id.subject_id.name" />
+                                                </a>
+                                            </div>
                                         </t>
-                                        ) </p>
+                                    </p>
                                 </div>
-                                <div style="width: 20%;">
+                                <div style="width: 25%;">
+                                    <t t-esc="note.enroll_id.university_id.name" />
+                                </div>
+                                <div style="width: 15%;">
                                     <p> Professor: <t t-esc="note.enroll_id.professor_id.name" />
                                     </p>
                                 </div>
