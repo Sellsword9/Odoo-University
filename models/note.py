@@ -1,12 +1,13 @@
+import re
 from odoo import models, fields, api
 
 class Note(models.Model):
     _name = 'university.notes'
     _description = 'The notes of the universities'
 
-    student_id = fields.Many2one('university.students', string='Student')
-    enroll_id = fields.Many2one('university.enrolls', string='enroll')
-    note = fields.Float()
+    student_id = fields.Many2one('university.students', string='Student', required=True)
+    enroll_id = fields.Many2one('university.enrolls', string='Enroll', required=True)
+    note = fields.Float(string='Note', required=True)
     name = fields.Char(compute='_compute_name', store=True, readonly=True)
     #subject = fields.Char(related='enroll_id.subject_id.name', string='Subject',readonly=True)
     

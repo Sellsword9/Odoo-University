@@ -12,7 +12,7 @@ class Student(models.Model):
     university_id = fields.Many2one('university.university', string='University', required=True)
     
     # User field
-    user_id = fields.Many2one('res.users', string='User', Store=True)
+    user_id = fields.Many2one('res.users', string='User', store=True)
     username = fields.Char(string='Username', related='user_id.login', readonly = True, store = True)
     # Create user on creation
     
