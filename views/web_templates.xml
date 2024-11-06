@@ -137,4 +137,47 @@
             </div>
         </t>
     </template>
+
+    <template id="my_notes"
+              name="My notes">
+        <t t-call="website.layout">
+            <h1>
+                <t t-if="student">
+                    Your notes
+                </t>
+            </h1>
+            <t t-foreach="notes"
+               t-as="note">
+                <div style="
+                            display:flex; 
+                            flex-direction: row; 
+                            justify-content: space-between;
+                            align-items: center; 
+                            background-color: #f2f2f2; 
+                            padding: 1rem; 
+                            margin: 1rem; 
+                            border-radius: 0.5rem;">
+                    <div style="width: 20%;">
+                        <h3>
+                            <t t-esc="note.enroll_id.name" />
+                        </h3>
+                    </div>
+                    <div style="width:30%">
+                        <t t-esc="note.enroll_id.subject_id.name" />
+                    </div>
+                    <div style="width: 25%;">
+                        <t t-esc="note.enroll_id.university_id.name" />
+                    </div>
+                    <div style="width: 15%;">
+                        <p> Professor: <t t-esc="note.enroll_id.professor_id.name" />
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            <t t-esc="note.note" /> / 10 </p>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
 </odoo>

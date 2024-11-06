@@ -13,7 +13,7 @@ class Student(models.Model):
     
     # User field
     user_id = fields.Many2one('res.users', string='User', store=True)
-    username = fields.Char(string='Username', related='user_id.login', readonly = True, store = True)
+    username = fields.Char(string='Email', related='user_id.login', readonly = True, store = True)
     # Create user on creation
     
     @api.model
@@ -106,7 +106,6 @@ class Student(models.Model):
     # Email and pdf generation
 
     def action_student_send(self):
-
         template = self._find_mail_template()
         ctx = {
             'default_model': 'university.students',

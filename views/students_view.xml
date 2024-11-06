@@ -44,10 +44,19 @@
                                        widget="image"
                                        class="oe_avatar oe_left" />
                                 <group>
-                                    <label for="name"
-                                           string="Student Name" />
                                     <field name="name" />
-                                    <field name="username" />
+                                    <div style="
+                                            display: flex;
+                                            flex-direction: row;
+                                            width: 10rem;
+                                         ">
+                                        <label for="username"
+                                               class="col-form-label">Email</label>
+                                        <field name="username" />
+                                        <widget name="university_toaster_button"
+                                                button_name="action_student_send"
+                                                title="Send notes by email" />
+                                    </div>
                                     <field name="average" />
                                 </group>
                                 <group>
