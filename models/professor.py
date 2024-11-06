@@ -1,3 +1,4 @@
+import re
 from odoo import models, fields, api
 
 class Professor(models.Model):
@@ -7,20 +8,22 @@ class Professor(models.Model):
     name = fields.Char()
     university_id = fields.Many2one("university.university", required=True)
     department_id = fields.Many2one("university.departments")
-    subjects = fields.Many2many("university.subjects")
+    subjects = fields.Many2many("university.subjects", compute="_compute_subjects", readonly = False)
     enrolls = fields.One2many("university.enrolls", "professor_id")
 
     enroll_count = fields.Char(string="Enroll Count", compute="_compute_enroll_count")
     @api.depends('enrolls')
     def _compute_enroll_count(self):
-        
         for record in self:
            if record.enrolls:
                record.enroll_count = str(len(record.enrolls)) + " enrolls"
            else:
                 record.enroll_count = "No enrolls yet"
-    
-    # Image field
+    @api.depends('enrolls')
+    def _compute_subjects(self):
+        for record in self:
+            for enroll in record.enrolls:
+                record.subjects = record.subjects | enroll.subject_id
     image = fields.Image()
     
     

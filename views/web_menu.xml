@@ -1,15 +1,17 @@
 <odoo>
     <!-- Inherit portal and add a button into my/account -->
 
-    <template id="portal_my_home_sale"
+    <template id="portal_notes_menu"
               name="Notes menu"
               customize_show="True"
               inherit_id="portal.portal_my_home"
-              priority="20">
+              priority="1">
         <xpath expr="//div[hasclass('o_portal_docs')]"
                position="before">
             <t t-set="portal_client_category_enable"
                t-value="True" />
+            <t t-set="portal_client_category"
+               t-value="'notes'" />
         </xpath>
 
         <div id="portal_client_category"

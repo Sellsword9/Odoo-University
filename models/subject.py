@@ -5,7 +5,7 @@ class Subject(models.Model):
     _description = "The subjects of the universities."
     
     name = fields.Char()
-    university_id = fields.Many2one("university.university")
+    university_id = fields.Many2one("university.university", string="University", required=True)
     professors = fields.Many2many("university.professors")
     enrolls = fields.One2many("university.enrolls", "subject_id")
     
