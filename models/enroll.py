@@ -33,10 +33,7 @@ class enroll(models.Model):
     def _compute_enrolls_in_subject(self):
         for record in self:
             if record.subject_id and record.subject_id.enrolls:
-                if record.id in record.subject_id.enrolls.ids:
-                    record.enrolls_this_subject = len(record.subject_id.enrolls)
-                else:
-                    record.enrolls_this_subject = len(record.subject_id.enrolls) + 1
+                record.enrolls_this_subject = len(record.subject_id.enrolls)
             else:
                 record.enrolls_this_subject = 0
     
@@ -47,9 +44,7 @@ class enroll(models.Model):
             if record.create_date is not None and record.create_date is not False:
                 year = str(record.create_date.year)
             
-            number = 0
-            if record.enrolls_this_subject and record.enrolls_this_subject > 1:
-                number += record.enrolls_this_subject
+            number = record.enrolls_this_subject
             
             # Compute the subject abbreviation
             if record.subject_id.name:

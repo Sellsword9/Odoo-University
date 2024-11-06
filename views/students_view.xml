@@ -40,6 +40,9 @@
                         </div>
                         <notebook>
                             <page string="General Information">
+                                <field name="image"
+                                       widget="image"
+                                       class="oe_avatar oe_left" />
                                 <group>
                                     <label for="name"
                                            string="Student Name" />

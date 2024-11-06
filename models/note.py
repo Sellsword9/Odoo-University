@@ -19,3 +19,13 @@ class Note(models.Model):
                 month = record.create_date.month
                 year = record.create_date.year
                 record.name = f"{year}-{month}-{day},{subject},{record.note}"
+    
+    @api.onchange('enroll_id')
+    def _onchange_enroll_id(self):
+        if self.enroll_id:
+            self.student_id = self.enroll_id.student_id
+    
+    # Constraints
+    _sql_constraints = [
+        ('note_check', 'CHECK(note >= 0 AND note <= 10)', 'The note must be between 0 and 10'),
+    ]

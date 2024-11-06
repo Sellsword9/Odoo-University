@@ -9,7 +9,7 @@ class Student(models.Model):
     _inherit = ['university.has.directions']
     
     name = fields.Char(string='Name', required=True)
-    university_id = fields.Many2one('university.university', string='University')
+    university_id = fields.Many2one('university.university', string='University', required=True)
     
     # User field
     user_id = fields.Many2one('res.users', string='User', Store=True)
@@ -151,4 +151,4 @@ class Student(models.Model):
 
 def createUsername(name, part2, university):
     username = f"{name[0]}{part2}@nb.{university}.com"
-    return username
+    return username.lower()
