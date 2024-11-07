@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="university_toaster_button"
+              inherit_id="web.Button">
+
+        <t t-name="university.ButtonWithNotification">
+            <button t-on-click="onClick"
+                    t-att-name="props.method"
+                    type="button"
+                    class="btn oe_inline btn-link"
+                    t-att-title="props.title">
+                <i class="fa fa-fw o_button_icon fa-info-circle"></i>
+            </button>
+        </t>
+
+    </template>
+</odoo>

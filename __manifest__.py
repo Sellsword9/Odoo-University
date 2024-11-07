@@ -8,6 +8,7 @@
   
   "depends": [
     "base",
+    "web",
     "mail",
     "base_setup",
     "website",
