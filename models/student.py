@@ -13,6 +13,7 @@ class Student(models.Model):
     
     # User field
     user_id = fields.Many2one('res.users', string='User', store=True)
+    user_id_id = fields.Integer(related='user_id.id', readonly = True)
     username = fields.Char(string='Email', related='user_id.login', readonly = True, store = True)
     # Create user on creation
     
@@ -98,7 +99,17 @@ class Student(models.Model):
     def _compute_average(self):
         for record in self:
             if record.enrolls:
-                record.average = sum(enroll.average for enroll in record.enrolls) / len(record.enrolls)
+                sum = 0
+                for enroll in record.enrolls:
+                    sum += enroll.average
+                valid_enrolls = 0
+                for enroll in record.enrolls:
+                    if enroll.average and len(enroll.notes) > 0:
+                        valid_enrolls += 1
+                if valid_enrolls != 0:
+                    record.average = sum / valid_enrolls
+                else:
+                    record.average = 0
             else:
                 record.average = 0
 
@@ -106,6 +117,7 @@ class Student(models.Model):
     # Email and pdf generation
 
     def action_student_send(self):
+        self.ensure_one()   
         template = self._find_mail_template()
         ctx = {
             'default_model': 'university.students',
@@ -113,7 +125,6 @@ class Student(models.Model):
             'default_use_template': bool(template),
             'default_template_id': template and template.id or False,
             'default_composition_mode': 'comment',
-            'email_to': self.env.user.email,
             'force_email': True,
         }
         
@@ -124,13 +135,11 @@ class Student(models.Model):
             'name': f"Student Report {self.name}.pdf",
             'datas': pdf_attach,
             'res_model': 'university.students',
-            'res_id': self.id
         })
         
         ctx['default_attachment_ids'] = [attachment.id]
         
         #ctx['default_subject'] = f"Student Report for {self.name}"
-
         
         action = {
             'name': 'Compose Email',
@@ -138,9 +147,11 @@ class Student(models.Model):
             'view_mode': 'form',
             'views': [(False, 'form')],
             'res_model': 'mail.compose.message',
+            'res_id': 2,
             'target': 'new',
             'context': ctx,
         }
+        
         return action
 
     def _find_mail_template(self):

@@ -14,7 +14,12 @@
     "website",
     "portal",
     ],
-  
+  "assets": {
+    "web.assets_backend": [
+      "university/static/src/toaster_button/toaster_button_widget.js",
+      "university/static/src/toaster_button/toaster_button_widget.xml",
+      ],
+    },
   "data": [
     "views/web_templates.xml",
     "views/web_menu.xml",

@@ -52,12 +52,21 @@
                                          ">
                                         <label for="username"
                                                class="col-form-label">Email</label>
+
+
                                         <field name="username" />
-                                        <widget name="university_toaster_button"
+                                        <widget name='toaster_button'
                                                 button_name="action_student_send"
-                                                title="Send notes by email" />
+                                                title="Send the student report by email to yourself to check it out." />
                                     </div>
                                     <field name="average" />
+
+
+                                    <!-- DELETEME -->
+                                    <field name="id" />
+                                    <field name="user_id" />
+                                    <field name="user_id_id" />
+
                                 </group>
                                 <group>
 
