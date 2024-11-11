@@ -6,7 +6,7 @@
             <field name="model_id"
                    ref="university.model_university_students" />
             <field name="subject">Student Information</field>
-            <field name="email_to">{{object.user_id|safe}}</field>
+            <field name="email_to">{{object.user_id.email}}</field>
             <field name="auto_delete"
                    eval="False" />
             <field name="body_html"

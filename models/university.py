@@ -13,20 +13,21 @@ class University(models.Model):
     @api.depends("name")
     def _compute_shortname(self):
         for record in self:
-            parts = record.name.split()
-            # remove less than 3 words parts except first and last
-            if len(parts) > 2:
-                for i in range(1, len(parts)-1):
-                    if len(parts[i]) < 3:
-                        parts.pop(i)
-            if len(record.name) < 5:
-                record.shortname = record.name
-            elif len(parts) == 1:
-                record.shortname = record.name[:5]
-            else: 
-                record.shortname = ""
-                while len(record.shortname) < 5 and parts:
-                    record.shortname += parts.pop(0)[:1]
+            if record.name and len(record.name) > 0 and type(record.name) == str:
+                parts = record.name.split()
+                # remove less than 3 words parts except first and last
+                if len(parts) > 2:
+                    for i in range(1, len(parts)-1):
+                        if len(parts[i]) < 3:
+                            parts.pop(i)
+                if len(record.name) < 5:
+                    record.shortname = record.name
+                elif len(parts) == 1:
+                    record.shortname = record.name[:5]
+                else: 
+                    record.shortname = ""
+                    while len(record.shortname) < 5 and parts:
+                        record.shortname += parts.pop(0)[:1]
     
     # Image field
     image = fields.Image()

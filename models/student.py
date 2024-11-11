@@ -114,8 +114,16 @@ class Student(models.Model):
                 record.average = 0
 
 
+    
+    
     # Email and pdf generation
-
+    def _get_customer_information(self):
+        return {
+            'name': self.name,
+            'email': self.username,
+        }
+    
+    
     def action_student_send(self):
         self.ensure_one()   
         template = self._find_mail_template()
@@ -138,16 +146,14 @@ class Student(models.Model):
         })
         
         ctx['default_attachment_ids'] = [attachment.id]
-        
-        #ctx['default_subject'] = f"Student Report for {self.name}"
-        
+    
         action = {
             'name': 'Compose Email',
             'type': 'ir.actions.act_window',
             'view_mode': 'form',
             'views': [(False, 'form')],
             'res_model': 'mail.compose.message',
-            'res_id': 2,
+            'res_id': False,
             'target': 'new',
             'context': ctx,
         }
