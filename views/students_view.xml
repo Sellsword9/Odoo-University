@@ -61,12 +61,6 @@
                                     </div>
                                     <field name="average" />
 
-
-                                    <!-- DELETEME -->
-                                    <field name="id" />
-                                    <field name="user_id" />
-                                    <field name="user_id_id" />
-
                                 </group>
                                 <group>
 
