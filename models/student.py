@@ -123,10 +123,7 @@ class Student(models.Model):
             'email': self.username,
         }
     
-    
-    def action_student_send(self):
-        self.ensure_one()   
-        template = self._find_mail_template()
+    def send_email(self, template, isReminder=False):
         ctx = {
             'default_model': 'university.students',
             'default_res_ids': [self.id],
@@ -146,7 +143,17 @@ class Student(models.Model):
         })
         
         ctx['default_attachment_ids'] = [attachment.id]
-    
+        if isReminder: 
+            action = self.env['mail.template'].browse(template.id).send_mail(self.id, force_send=True, email_values={'attachment_ids': [attachment.id]})
+        else:
+            return ctx
+        
+        
+        return action
+    def action_student_send(self):
+        self.ensure_one()
+        template = self._find_mail_template()   
+        ctx = self.send_email(template, False)
         action = {
             'name': 'Compose Email',
             'type': 'ir.actions.act_window',
@@ -157,7 +164,6 @@ class Student(models.Model):
             'target': 'new',
             'context': ctx,
         }
-        
         return action
 
     def _find_mail_template(self):
@@ -165,6 +171,15 @@ class Student(models.Model):
         self.ensure_one()
         return self.env.ref('university.email_template_student', raise_if_not_found=False)
 
+    def send_reminder_preview(self):
+        self.ensure_one()
+        """         if not self.env.user.has_group('purchase.group_send_reminder'):
+            return """
+        template = self.env.ref('university.email_template_student_reminder', raise_if_not_found=False)
+        self.send_email(template, True)
+        msg = "Un mensaje de prueba ha sido enviado a %s." % self.env.user.email
+        
+        return {'toast_message': msg}
 def createUsername(name, part2, university):
     username = f"{name[0]}{part2}@nb.{university}.com"
     return username.lower()

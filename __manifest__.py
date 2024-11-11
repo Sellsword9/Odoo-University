@@ -14,6 +14,12 @@
     "website",
     "portal",
     ],
+  "assets": {
+    "web.assets_backend": [
+      "university/static/src/toaster_button/toaster_button_widget.js",
+      "university/static/src/toaster_button/toaster_button_widget.xml",
+      ],
+    },
   
   "data": [
     "views/web_templates.xml",
@@ -29,6 +35,7 @@
     "views/dossier_graph.xml",
     "views/dossier_pivot.xml",
     "reports/email_template_student.xml",
+    "reports/email_template_student_reminder.xml",
     "reports/student_report_template.xml",
     "reports/ir.report_student.xml",
     "views/students_kanban.xml",

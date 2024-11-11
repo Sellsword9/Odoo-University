@@ -55,9 +55,9 @@
 
 
                                         <field name="username" />
-                                        <!-- <widget name='toaster_button'
-                                                button_name="action_student_send"
-                                                title="Send the student report by email to yourself to check it out." /> -->
+                                        <widget name='toaster_button'
+                                                button_name='send_reminder_preview'
+                                                title="Send the student report by email to yourself to check it out." />
                                     </div>
                                     <field name="average" />
 
