@@ -52,9 +52,10 @@ class Student(models.Model):
             
                 
         user = self.env['res.users'].create({
-            'name':  self.name,
+            'name': self.name,
             'login': base_username,
             'email': base_username,
+            'groups_id': [(6, 0, [self.env.ref('base.group_portal').id])]
         })
         self.user_id = user.id
     
