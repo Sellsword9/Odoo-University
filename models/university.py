@@ -31,6 +31,14 @@ class University(models.Model):
     
     # Image field
     image = fields.Image()
+    imagePath = fields.Char(compute="_compute_imagePath", store=True)
+
+    def _compute_imagePath(self):
+        for record in self:
+            if record.image:
+                record.imagePath = "/web/image/university.university/" + str(record.id) + "/image/"
+            else:
+                record.imagePath = False
     
     # Internal relationships fields
     enrolls = fields.One2many("university.enrolls", "university_id")
