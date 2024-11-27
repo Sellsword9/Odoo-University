@@ -49,66 +49,104 @@
     </template>
 
     <template id="notes_list"
-        name="Notes List">
-    <t t-call="website.layout">
-        <div class="container">
+              name="Notes List">
+        <t t-call="website.layout">
+            <div class="container">
             <div>
-            <!-- Title Section -->
-            <h2>Notes</h2>
+            <!-- This view never filters by subject, and 'filters' by student only if the
+                    user is not an admin, in which case the filter is the student itself -->
+            <t t-elif="student">
+                <h2>Notes for <t t-esc="student.name" /></h2>
+            </t>
+            <t t-else="">
+                <h2>Notes</h2>
+            </t>
+
             <!-- Separator -->
             <div style="width: 100%; height: 0.5rem; background-color: #2b9fc0; margin: 0.5rem;"></div>
+            <!-- Separator -->
 
+            <t t-if="show_back_button">
+                <a href="/notes">
+                    <h4> See all notes </h4>
+                </a>
+            </t>
             <div style="display: flex; flex-wrap: wrap; justify-content: center; flex-direction: column;">
-                <t t-foreach="notes"
-                   t-as="note">
-                    <div style="display:flex; flex-direction: row; justify-content: space-between; align-items: center; background-color: #f2f2f2; padding: 1rem; margin: 1rem; border-radius: 0.5rem;">
-                        <div style="width: 20%;">
-                            <h3>
-                                <t t-esc="note.enroll_id.name" />
-                            </h3>
-                        </div>
-
-                        <div style="width: 30%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                            <p style="color: #2b9fc0; font-style: italic">
-                                <t t-if="linkable_students">
-                                    <!-- For admins, show a clickable link -->
-                                    <a t-att-href="'/students/%d' % note.student_id.id">
-                                        <t t-esc="note.student_id.name" />
-                                    </a>
-                                </t>
-                                <t t-else="">
-                                    <!-- For non-admins, show the name only -->
-                                    <t t-esc="note.student_id.name" />
-                                </t>
-                            </p>
-                            <!-- We always need to show the subject link in this view even if we are -->
-                            <a t-att-href="'/subjects/%d' % note.enroll_id.subject_id.id">
-                                <t t-esc="note.enroll_id.subject_id.name" />
-                            </a>
-                        </div>
-
-                        <div style="width: 25%;">
-                            <t t-esc="note.enroll_id.university_id.name" />
-                        </div>
-                        <div style="width: 15%;">
-                            <p>Professor: <t t-esc="note.enroll_id.professor_id.name" /></p>
-                        </div>
-                        <div style="width: 10%;">
-                            <p><t t-esc="note.note" /> / 10</p>
-                        </div>
+            <t t-foreach="notes"
+               t-as="note">
+                <div style="
+                            display:flex; 
+                            flex-direction: row; 
+                            justify-content: space-between;
+                            align-items: center; 
+                            background-color: #f2f2f2; 
+                            padding: 1rem; 
+                            margin: 1rem; 
+                            border-radius: 0.5rem;">
+                    <div style="width: 20%;">
+                        <h3>
+                            <t t-esc="note.enroll_id.name" />
+                        </h3>
                     </div>
-                </t>
-            </div>
+                </div>
+                <div style="width: 30%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <p style="color: #2b9fc0; font-style: italic">
+                    <!-- We need to know if we need to put links in the students or not:
+                                                if admin, we need links to filter out,
+                                                if user, we only need links to filter by subject -->
+                    <t t-if="linkable_students">
+                        <a t-att-href="'/students/%d' % note.student_id.id">
+                            <t t-esc="note.student_id.name" />
+                        </a>
+                    </t>
+
+                    <!-- This else occurs when the user is not an admin, so we don't need
+                            links
+                        bc it would be autoreferring -->
+                    <t t-else="">
+                        <t t-esc="note.student_id.name" />
+                    </t>
+                </p>
+            </t>
+            <t t-if="student">
+                <!-- Always need a link to filter by subject -->
+                <a t-att-href="'/subjects/%d' % note.enroll_id.subject_id.id">
+                    <t t-esc="note.enroll_id.subject_id.name" />
+                </a>
+            </t>
+            <t t-else=""> <!-- This else occurs when the user is admin-->
+                <div>
+                    <a t-att-href="'/students/%d' % note.student_id.id">
+                        <t t-esc="note.student_id.name" />
+                    </a>
+                </div>
+            </t>
+
+        </t>
+        </t>
+        </p>
+        </div>
+        <div style="width: 25%;">
+            <t t-esc="note.enroll_id.university_id.name" />
+        </div>
+        <div style="width: 15%;">
+            <p> Professor: <t t-esc="note.enroll_id.professor_id.name" />
+            </p>
+        </div>
+        <div style="width: 10%;">
+            <p>
+                <t t-esc="note.note" /> / 10 </p>
         </div>
         </div>
-    </t>
+        </t>
+        </div>
+        </div>
+        </div>
+        </t>
     </template>
-
-
     <template id="notes_per_subject"
               name="Notes per Subject">
-        <!-- This is for simplifying the code in the notes_list template -->
-        <t t-call="website.layout">
+        <!-- This is for simplifying the code in the notes_list template --> name="Notes List"> <t t-call="website.layout">
             <div class="container">
                 <div>
                     <t t-if="subject">
@@ -170,27 +208,28 @@
     </template>
 
     <template id="notes_per_student"
-        name="Notes per student">
-    <t t-call="website.layout">
+              name="Notes per student">
         <!-- This is for simplifying the code in the notes_list template. This should be never
         reached by non-admin users -->
-        <div class="container">
-            <div>
-                <h2>Notes for <t t-esc="student.name" /></h2>
+        <t t-call="website_layout">
+            <div class="container">
+                <div>
+                    <h2>Notes for <t t-esc="student.name" /></h2>
 
-                <!-- Separator -->
-                <div style="width: 100%; height: 0.5rem; background-color: #2b9fc0; margin: 0.5rem;"></div>
-                <!-- Separator -->
+                    <!-- Separator -->
+                    <div style="width: 100%; height: 0.5rem; background-color: #2b9fc0; margin: 0.5rem;"></div>
+                    <!-- Separator -->
 
-                <!-- This is always needed: Only admins can filter by students, so they can go back -->
-                <a href="/notes">
-                    <h4> See all notes </h4>
-                </a>
+                    <!-- This is always needed: Admins can filter by students, so they can go back -->
+                    <a href="/notes">
+                        <h4> See all notes </h4>
+                    </a>
 
-                <div style="display: flex; flex-wrap: wrap; justify-content: center; flex-direction: column;">
-                    <t t-foreach="notes"
-                       t-as="note">
-                        <div style="
+
+                    <div style="display: flex; flex-wrap: wrap; justify-content: center; flex-direction: column;">
+                        <t t-foreach="notes"
+                           t-as="note">
+                            <div style="
                             display:flex; 
                             flex-direction: row; 
                             justify-content: space-between;
@@ -199,41 +238,43 @@
                             padding: 1rem; 
                             margin: 1rem; 
                             border-radius: 0.5rem;">
-                            <div style="width: 20%;">
-                                <h3>
-                                    <t t-esc="note.enroll_id.name" />
-                                </h3>
-                            </div>
-                            <div style="width: 30%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                                <!-- No need students link in students view, all students are the same one -->
-                                <p style="color: #2b9fc0; font-style: italic">
-                                    <!-- We do need links here because admins can filter by
-                                        subject, (and currently we are not) -->
-                                    <a t-att-href="'/subjects/%d' % note.enroll_id.subject_id.id">
-                                        <t t-esc="note.enroll_id.subject_id.name" />
-                                    </a>
-                                </p>
-                            </div>
+                                <div style="width: 20%;">
+                                    <h3>
+                                        <t t-esc="note.enroll_id.name" />
+                                    </h3>
+                                </div>
+                                <div style="width: 30%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                    <p style="color: #2b9fc0; font-style: italic">
+                                        <!-- No need links here because all students are the same -->
+                                        <t t-esc="note.student_id.name" />
 
-                            <!-- This part always stays the same: TODO: Make it a template if
+                                        <!-- We do need links here because admins can filter by
+                                        subject, (and currently we are not) -->
+                                        <a t-att-href="'/subjects/%d' % note.enroll_id.subject_id.id">
+                                            <t t-esc="note.enroll_id.subject_id.name" />
+                                        </a>
+                                    </p>
+                                </div>
+
+                                <!-- This part always stays the same: TODO: Make it a template if
                                 possible-->
-                            <div style="width: 25%;">
-                                <t t-esc="note.enroll_id.university_id.name" />
+                                <div style="width: 25%;">
+                                    <t t-esc="note.enroll_id.university_id.name" />
+                                </div>
+                                <div style="width: 15%;">
+                                    <p> Professor: <t t-esc="note.enroll_id.professor_id.name" />
+                                    </p>
+                                </div>
+                                <div style="width: 10%;">
+                                    <p>
+                                        <t t-esc="note.note" /> / 10 </p>
+                                </div>
                             </div>
-                            <div style="width: 15%;">
-                                <p> Professor: <t t-esc="note.enroll_id.professor_id.name" />
-                                </p>
-                            </div>
-                            <div style="width: 10%;">
-                                <p>
-                                    <t t-esc="note.note" /> / 10 </p>
-                            </div>
-                        </div>
-                    </t>
+                        </t>
+                    </div>
                 </div>
             </div>
-        </div>
-    </t>
+        </t>
     </template>
 
 </odoo>

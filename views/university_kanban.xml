@@ -11,14 +11,14 @@
                 <field name="imagePath" />
                 <t t-name="card">
                     <div class="oe_kanban_global_click">
-                        <div class="o_kanban_record"
-                             style="height: 100%;">
+                        <div class="o_kanban_record holamundo" style="height: 100%; width: 100%; padding: 1rem;">
                             <div class="o_kanban_details">
                                 <div style="min-height: 100%; width: 100%;">
                                     <div style="display: flex; justify-content: space-between; align-items: center; flex-direction: column;">
                                         <div style="width: 100%; height: 15rem; display: flex; justify-content: center; align-items: flex-start;">
                                             <t t-if="record.imagePath">
-                                                <img t-att-src="record.imagePath.raw_value" style="max-width: 100%; max-height: 100%;" />
+                                                <img t-att-src="record.imagePath.raw_value"
+                                                     style="max-width: 100%; max-height: 100%;" />
                                             </t>
                                         </div>
                                         <strong>
@@ -32,8 +32,6 @@
                                     <br></br>
                                     <field name="city" />
                                     </div>
-                                    <div> Postal code: <field name="postal_code" />
-                                    </div>
                                     <div>
                                         <field name="country" />
                                         <img t-att-src="record.flag.raw_value"
@@ -46,8 +44,7 @@
                 </t>
             </kanban>
         </field>
-    </record><!--
-    Action -->
+    </record>
     <record id="university_university_kanban_action"
             model="ir.actions.act_window">
         <field name="name">University Kanban</field>
