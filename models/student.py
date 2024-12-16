@@ -34,10 +34,11 @@ class Student(models.Model):
     def create_user(self):
         self.ensure_one()
         words = self.name.split()
+        
         if len(words) < 2:
             words.append(words[0]) # Duplicating the name if no last name of any kind provided
         university = self.university_id.shortname.lower().replace(" ", "")
-        
+            
         base_username = createUsername(words[0], words[1], university)
         
         c = 1
@@ -183,4 +184,21 @@ class Student(models.Model):
         return {'toast_message': msg}
 def createUsername(name, part2, university):
     username = f"{name[0]}{part2}@nb.{university}.com"
+    username = username.replace(" ", "")
+    username = username.replace("'", "")
+    username = username.replace("ñ", "n")
+    username = cleanUsernameVowels(username)
     return username.lower()
+
+def cleanUsernameVowels(name):
+
+    vowels = ['a', 'e', 'i', 'o', 'u']
+    tleft = ['á', 'é', 'í', 'ó', 'ú']
+    tright = ['à', 'è', 'ì', 'ò', 'ù']
+    diacritics = ['ä', 'ë', 'ï', 'ö', 'ü']
+    for i in range(len(vowels)):
+        name = name.replace(tleft[i], vowels[i])
+        name = name.replace(tright[i], vowels[i])
+        name = name.replace(diacritics[i], vowels[i])
+
+    return name

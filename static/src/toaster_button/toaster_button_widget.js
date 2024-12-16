@@ -34,4 +34,5 @@ export const buttonWithNotification = {
         };
     },
 };
+
 registry.category("view_widgets").add("toaster_button", buttonWithNotification);

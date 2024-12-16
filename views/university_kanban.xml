@@ -35,7 +35,8 @@
                                     <div>
                                         <field name="country" />
                                         <img t-att-src="record.flag.raw_value"
-                                             style="max-width: 5rem; max-height: 3rem; border: 1px solid black; float:right;" />
+                                            style="max-width: 5rem; max-height: 3rem; border: 1px solid black; float:right;" />
+                                        <p>(<field name="local_time" />)</p>
                                     </div>
                                 </div>
                             </div>
